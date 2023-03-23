@@ -1,8 +1,4 @@
---
--- File generated with SQLiteStudio v3.1.1 on domingo abr 15 20:33:39 2018
---
--- Text encoding used: UTF-8
---
+
 PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
@@ -10,7 +6,7 @@ BEGIN TRANSACTION;
 DROP TABLE IF EXISTS User2;
 
 CREATE TABLE User2 (
-    Username        TEXT    PRIMARY KEY,
+    username        TEXT    PRIMARY KEY,
     nome            TEXT    NOT NULL,
     password2       TEXT    NOT NULL,
     email           TEXT    NOT NULL,
@@ -28,18 +24,19 @@ CREATE TABLE Ticket (
     date2        TEXT,
     description2 TEXT   NOT NULL,
     status2      TEXT   NOT NULL,
-    user_usarname TEXT FOREIGN KEY
-
-
+    user_usarname TEXT,
+    FOREIGN KEY (user_usarname) REFERENCES User2(username)
 );
+
 
 -- Table:  UsernameTicke
 DROP TABLE IF EXISTS  UsernameTicke;
 
 CREATE TABLE  UsernameTicke (
-    user_username     TEXT FOREIGN KEY,
-    ticket_id     INTEGER FOREIGN KEY
-  
+    user_username     TEXT,
+    ticket_id     INTEGER,
+    FOREIGN KEY (user_usarname) REFERENCES User2(username),
+    FOREIGN KEY (ticket_id) REFERENCES Ticket(id)
 );
 
 -- Table:  Department 
@@ -66,11 +63,13 @@ CREATE TABLE  Faq  (
 DROP TABLE IF EXISTS  faq_department ;
 
 CREATE TABLE   faq_department   (
-    deparment_id  INTEGER FOREIGN KEY,
-    faq_id  INTEGER FOREIGN KEY
+    deparment_id  INTEGER,
+    faq_id  INTEGER,
+    FOREIGN KEY (department_id) REFERENCES Department(id),
+    FOREIGN KEY (faq_id) REFERENCES Faq(id)
+
 );
 
 
 
 COMMIT TRANSACTION;
-PRAGMA foreign_keys = on;
