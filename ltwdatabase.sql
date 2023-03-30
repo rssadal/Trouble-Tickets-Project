@@ -62,7 +62,7 @@ CREATE TABLE  Faq  (
 -- Table:  faq_department 
 DROP TABLE IF EXISTS  faq_department ;
 
-CREATE TABLE   faq_department   (
+CREATE TABLE   Faq_department   (
     deparment_id  INTEGER,
     faq_id  INTEGER,
     FOREIGN KEY (department_id) REFERENCES Department(id),
