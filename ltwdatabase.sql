@@ -30,7 +30,7 @@ CREATE TABLE Ticket (
 
 
 -- Table:  UsernameTicke
-DROP TABLE IF EXISTS  UsernameTicke;
+DROP TABLE IF EXISTS  UsernameTicket;
 
 CREATE TABLE  UsernameTicke (
     user_username     TEXT,
@@ -60,7 +60,7 @@ CREATE TABLE  Faq  (
 
 
 -- Table:  faq_department 
-DROP TABLE IF EXISTS  faq_department ;
+DROP TABLE IF EXISTS  Faq_department ;
 
 CREATE TABLE   Faq_department   (
     deparment_id  INTEGER,
