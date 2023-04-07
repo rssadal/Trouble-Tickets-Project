@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>  
+<head>
+	<link rel="icon" href="data:;base64,iVBORw0KG..." />
+
+	<style>
+		body {
+		  background-color: gray;
+		}
+
+	  </style>
+	<title>HTTP Request</title>
+</head>
+<body>
+	
+	<div  style="background-color: rgb(74, 72, 72);">
+		<h1 style="color: rgb(218, 21, 21);">Trouble tickets</h1>	
+		
+	</div>
+
+	<div id="button-container">
+		<button onclick="function1()">Track Tickets</button>
+		<button onclick="function2()">Show current Ticket List</button>
+		<button onclick="function3()">Button 3</button>
+	</div>
+	  
+	<div  style="background-color: rgb(132, 124, 124);">
+		<p>This system enables you to submit, track, and resolve tickets
+			promptly and efficiently. Additionally, the website should have intuitive user interfaces
+			and reporting functionalities to provide real-time insights into ticket status and performance metrics.
+		</p>
+	</div>
+
+	<h1>PHP Table Example</h1>
+	<iframe src="ticketjson.php"></iframe>
+
+	<script>
+
+
+		function function1() {
+			let nickname = "diogo13350";
+			console.log("CALLED BUTTON1");
+			fetch('ticketjson.php')
+			.then(response => response.json())
+			.then(data => {
+				// process the JSON data here
+				console.log(data);
+			})
+			.catch(error => {
+				// handle any errors here
+				console.error(error);
+			});
+		}
+
+		function function2() {
+			window.location.href = "random.php";
+		}
+
+		function function3() {
+		alert("Button 3 clicked!");
+		}
+
+	  </script>
+</body>
+</html>
