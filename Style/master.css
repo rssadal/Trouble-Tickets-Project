@@ -1,3 +1,36 @@
 body{
+    display:flex;
     justify-content: center;
+    flex-direction: column;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fields{
+    display:flex;
+    margin: 1em;
+}
+
+#forms {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+#forms :first-child{
+    flex-direction: column;
+}
+
+#forms :nth-child(2){
+    flex-direction: row-reverse;
+}
+
+#forms :nth-child(2) > *{
+    margin-left: 1em;
 }
