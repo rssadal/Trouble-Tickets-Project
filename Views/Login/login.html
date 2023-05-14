@@ -67,7 +67,10 @@
                     <img src="../../Images/ticket.jpg" alt="Image" class="square-image">
                 </div>
                 
-                <div class="square"></div>
+                <div class="square" onclick="squareClicked2()">
+                    <img src="../../Images/faq.jpg" alt="Image" class="square-image">
+                </div>
+
                 <div class="square"></div>
             </div>
 
@@ -139,11 +142,14 @@
                 }
 
                 function squareClicked() {
-                    // Code to execute when the square is clicked
-                    console.log("Square clicked!");
                     window.location.href = "../../Views/Tickets/Index.html";
 
-                    // Add your custom logic here
+                }
+
+                
+                function squareClicked2() {
+                    window.location.href = "../../Views/Faq/faq.html";
+
                 }
 
         </script>
