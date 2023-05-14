@@ -18,11 +18,19 @@
                 <input type="password" id="passwordInput"></input>
 
                 <input type="button" value="Log In" onclick="login()">
+                <input type="button" value="Create Account" onclick="createAccount()">
             </div>
         </form>
 
+        <div id="resultContainer"></div>
+
 
         <script>
+
+            var receivedData = "Please Login";
+            displayReceivedData();
+
+            var loggedIn = 0;
 
             function login() {
                 console.log("LOG IN BUTTON");
@@ -51,6 +59,15 @@
 
                 .then(data => {
                     console.log(data);
+                    receivedData = data;
+                    if(data == 'sucess'){
+                        loggedIn = 1;
+                    }
+                    else{
+                        loggedIn = 0;
+                    }
+                    // Call a function to display the received data on the screen
+                    displayReceivedData();
                     
                 })
                 .catch(error => {
@@ -58,8 +75,18 @@
                 });
                 }
 
+                function createAccount() {
+                    console.log("CREATE ACCOUNT BUTTON");
+                    window.location.href = "createacount.html";
+                }
+
+                function displayReceivedData() {
+                    var resultContainer = document.getElementById("resultContainer");
+                    resultContainer.innerHTML = receivedData;
+                }
+
         </script>
         
-    
+
     </body>
 </html

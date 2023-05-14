@@ -35,7 +35,6 @@
 
     $db->close();
 
-
     //Escolhemos qual a informacao queremos no ecrã
     foreach ($tickets as $ticket) {
         ?>
