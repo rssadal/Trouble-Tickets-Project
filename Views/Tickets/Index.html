@@ -20,7 +20,9 @@
 
         <header>
             <nav>
-              <div id="logo"><h2>Solve Us</h2></div>
+              <div id="logo" onclick="goBack()">
+                <h2>Solve Us</h2>
+            </div>
             </nav>
         </header>
 
@@ -68,6 +70,7 @@
                 </div>  
             </div>
             -->
+            
             <div class="ticket">
                 <div>Ticket ID</div>
                 <div>Description</div>
@@ -77,6 +80,14 @@
             <iframe src="tickets.php"></iframe>
 
         </div>
+
+        <script>
+
+                function goBack() {
+                    window.location.href = "../../Views/Login/login.html";
+                }
+
+        </script>
         
 
     </body>

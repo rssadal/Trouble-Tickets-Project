@@ -4,11 +4,48 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
+
+        <style>
+            .squares {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+                
+            .square {
+                /* Existing styles for the square */
+                width: 300px;
+                height: 300px;
+                background-color: #ccc;
+                margin: 10px;
+                /* Add the following styles */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .square-image {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            .line1 {
+                display: flex;
+                margin-bottom: 20px;
+            }
+
+            .line2 {
+                display: flex;
+            }
+
+        </style>
+
         <title>Login</title>
     </head>
     
     <body>
-
         <form>
             <div>
                 <label>Login</label>
@@ -24,6 +61,22 @@
 
         <div id="resultContainer"></div>
 
+        <div class="squares">
+            <div class="line1">
+                <div class="square" onclick="squareClicked()">
+                    <img src="../../Images/ticket.jpg" alt="Image" class="square-image">
+                </div>
+                
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+
+            <div class="line2">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+        </div>
 
         <script>
 
@@ -83,6 +136,14 @@
                 function displayReceivedData() {
                     var resultContainer = document.getElementById("resultContainer");
                     resultContainer.innerHTML = receivedData;
+                }
+
+                function squareClicked() {
+                    // Code to execute when the square is clicked
+                    console.log("Square clicked!");
+                    window.location.href = "../../Views/Tickets/Index.html";
+
+                    // Add your custom logic here
                 }
 
         </script>
