@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../Style/master.css">
+        <title>Login</title>
+    </head>
+    
+    <body>
+        <input type="button" value="BackTomainPage" onclick="goBacktoMainPage() ">
+
+        <form>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="createusername" name="username"><br>
+        
+                <label for="name">name:</label>
+                <input type="text" id="createname" name="name"><br>
+        
+                <label for="email">email:</label>
+                <input type="text" id="createemail" name="email"><br>
+              
+                <label for="password">Password:</label>
+                <input type="password" id="createpassword" name="password"><br>
+              
+                <input type="button" value="Create Acount" onclick="create_acount()">
+
+            </div>
+        </form>
+
+
+
+        <script>
+            function goBacktoMainPage() {
+                window.location.href = "login.html";
+            }
+
+            function create_acount() {
+                console.log("CREATING ACOUNT");
+                var username = document.getElementById("createusername").value;
+                var password = document.getElementById("createpassword").value
+                var name = document.getElementById("createname").value;
+                var email = document.getElementById("createemail").value;
+
+                if (username === '') {
+                    console.log("Username cannot be empty");
+                    return;
+                }
+
+                if (password === '') {
+                    console.log("Password cannot be empty");
+                    return;
+                }
+
+                if (name === '') {
+                    console.log("Name cannot be empty");
+                    return;
+                }
+
+                if (email === '') {
+                    console.log("Email cannot be empty");
+                    return;
+                }
+
+                // Now you can use the 'username' and 'password' variables to authenticate the user
+                console.log("Username: " + username);
+                console.log("Password: " + password);
+                console.log("email: " + email);
+                console.log("name " + name);
+
+                
+                
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'createacount.php');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        console.log(xhr.responseText);
+                        // Do something with the response
+                        
+                    }
+                    else {
+                        console.log('Request failed.  Returned status of ' + xhr.status);
+                    }
+                };
+                
+                xhr.send('username=' + username + '&password=' + password + '&email=' + email + '&name=' + name);
+     
+  		}
+          
+        </script>
+        
+    
+    </body>
+</html

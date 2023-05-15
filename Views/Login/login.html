@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
+<<<<<<< HEAD
         <link rel="stylesheet" href="../../Style/login.css">
         <title>New Login</title>
     </head>
@@ -25,7 +26,158 @@
                         <button class="confirm" type="submit">Login</button>
                         <button class="confirm" type="submit">New Register</button>
                     </div>
+=======
+
+        <style>
+            .squares {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+                
+            .square {
+                /* Existing styles for the square */
+                width: 300px;
+                height: 300px;
+                background-color: #ccc;
+                margin: 10px;
+                /* Add the following styles */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .square-image {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            .line1 {
+                display: flex;
+                margin-bottom: 20px;
+            }
+
+            .line2 {
+                display: flex;
+            }
+
+        </style>
+
+        <title>Login</title>
+    </head>
+    
+    <body>
+        <form>
+            <div>
+                <label>Login</label>
+                <input type="text" id="usernameInput"></input>
+
+                <label>Password</label>
+                <input type="password" id="passwordInput"></input>
+
+                <input type="button" value="Log In" onclick="login()">
+                <input type="button" value="Create Account" onclick="createAccount()">
+>>>>>>> 338b1b514a3c4490027fa67223ce6478a761c9e2
             </div>
         </form>
+
+        <div id="resultContainer"></div>
+
+        <div class="squares">
+            <div class="line1">
+                <div class="square" onclick="squareClicked()">
+                    <img src="../../Images/ticket.jpg" alt="Image" class="square-image">
+                </div>
+                
+                <div class="square" onclick="squareClicked2()">
+                    <img src="../../Images/faq.jpg" alt="Image" class="square-image">
+                </div>
+
+                <div class="square"></div>
+            </div>
+
+            <div class="line2">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+        </div>
+
+        <script>
+
+            var receivedData = "Please Login";
+            displayReceivedData();
+
+            var loggedIn = 0;
+
+            function login() {
+                console.log("LOG IN BUTTON");
+                var username = document.getElementById("usernameInput").value;
+                var password = document.getElementById("passwordInput").value;
+    
+                // Now you can use the 'username' and 'password' variables to authenticate the user
+                console.log("Username: " + username);
+                console.log("Password: " + password);
+
+                fetch('login.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password)
+                })
+
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Request failed. Returned status of ' + response.status);
+                    }
+                })
+
+                .then(data => {
+                    console.log(data);
+                    receivedData = data;
+                    if(data == 'sucess'){
+                        loggedIn = 1;
+                    }
+                    else{
+                        loggedIn = 0;
+                    }
+                    // Call a function to display the received data on the screen
+                    displayReceivedData();
+                    
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+                }
+
+                function createAccount() {
+                    console.log("CREATE ACCOUNT BUTTON");
+                    window.location.href = "createacount.html";
+                }
+
+                function displayReceivedData() {
+                    var resultContainer = document.getElementById("resultContainer");
+                    resultContainer.innerHTML = receivedData;
+                }
+
+                function squareClicked() {
+                    window.location.href = "../../Views/Tickets/Index.html";
+
+                }
+
+                
+                function squareClicked2() {
+                    window.location.href = "../../Views/Faq/faq.html";
+
+                }
+
+        </script>
+        
+
     </body>
 </html
