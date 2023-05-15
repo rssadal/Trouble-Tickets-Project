@@ -11,7 +11,7 @@
     <body>
         <div onclick="goBacktoMainPage()" id="logo"><h2>Solve Us</h2></div>
 
-        <form action="" method="post">
+        <form method="post">
             <h1>
                 New Register
             </h1>
@@ -79,8 +79,6 @@
                 console.log("email: " + email);
                 console.log("name " + name);
 
-                
-                
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'Register.php');
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

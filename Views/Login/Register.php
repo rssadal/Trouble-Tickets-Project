@@ -54,7 +54,7 @@
         echo "Account created successfully";
     } else {
         // There was an error inserting the row
-        echo "Error: Unable to create account";
+      
     }
     
     $db->close();
