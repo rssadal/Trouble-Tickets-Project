@@ -28,3 +28,4 @@ INSERT INTO Ticket VALUES (1, 'tech help', '#', '05-05-2023', 'client waiting fo
 INSERT INTO Ticket VALUES (2, 'tech help', '#', '06-05-2023', 'client waiting for tech help', 'waiting','Pedroxx');
 INSERT INTO Ticket VALUES (3, 'marketing', '#', '02-05-2023', 'client waiting for meeting with business team', 'waiting','Pedroxx');
 INSERT INTO Ticket VALUES (4, 'information', '#', '04-05-2023', 'client requires information about a product', 'waiting','franca123');
+
