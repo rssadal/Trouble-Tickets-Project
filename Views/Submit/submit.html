@@ -18,15 +18,16 @@
             </h1>
             <div id="forms">
                     <div>
-                        <input type="text" placeholder="Name"></input>
+                        <input type="text" placeholder="Description"></input>
                     </div>
 
                     <div>
-                        <input type="text" placeholder="User Name"></input>
-                    </div>
-
-                    <div>
-                        <input type="text" placeholder="Email"></input>
+                        <label for="priority">Departments:</label>
+                        <select id="priority" name="priority">
+                            <option value="low">Admin</option>
+                            <option value="medium">Finance</option>
+                            <option value="high">Ti</option>
+                        </select>
                     </div>
 
                     <div>
@@ -38,6 +39,10 @@
         </form>
 
         <script>
+
+            function SubmitTicket() {
+                console.log("dfeefefesfskvjgskgsnjgn");
+            }
 
             function goBack() {
                 window.location.href = "../../Views/Login/login.html";
