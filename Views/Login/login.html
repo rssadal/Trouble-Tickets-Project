@@ -5,49 +5,13 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
         <link rel="stylesheet" href="../../Style/login.css">
-        
-
-        <style>
-            .squares {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-            }
-                
-            .square {
-                /* Existing styles for the square */
-                width: 300px;
-                height: 300px;
-                background-color: #ccc;
-                margin: 10px;
-                /* Add the following styles */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-            }
-
-            .square-image {
-                max-width: 100%;
-                max-height: 100%;
-            }
-
-            .line1 {
-                display: flex;
-                margin-bottom: 20px;
-            }
-
-            .line2 {
-                display: flex;
-            }
-
-        </style>
 
         <title>Login</title>
     </head>
     
     <body>
+        <div onclick="goBacktoMainPage()" id="logo"><h2>Solve Us</h2></div>
+
         <form>
             <div>
                 <label>Login</label>
@@ -62,28 +26,6 @@
         </form>
 
         <div id="resultContainer"></div>
-
-        <div class="squares">
-            <div class="line1">
-                <div class="square" onclick="squareClicked()">
-                    <img src="../../Images/ticket.jpg" alt="Image" class="square-image">
-                </div>
-                
-                <div class="square" onclick="squareClicked2()">
-                    <img src="../../Images/faq.jpg" alt="Image" class="square-image">
-                </div>
-
-                <div class="square" onclick="submitticket()">
-                    <img src="../../Images/submit2.jpg" alt="Image" class="square-image">
-                </div>
-            </div>
-
-            <div class="line2">
-                <div class="square"></div>
-                <div class="square"></div>
-                <div class="square"></div>
-            </div>
-        </div>
 
         <script>
 
@@ -101,7 +43,7 @@
                 console.log("Username: " + username);
                 console.log("Password: " + password);
 
-                fetch('Login.php', {
+                fetch('login.php', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
@@ -137,7 +79,7 @@
 
                 function createAccount() {
                     console.log("CREATE ACCOUNT BUTTON");
-                    window.location.href = "Register.html";
+                    window.location.href = "createacount.html";
                 }
 
                 function displayReceivedData() {
@@ -145,21 +87,10 @@
                     resultContainer.innerHTML = receivedData;
                 }
 
-                function squareClicked() {
-                    window.location.href = "../../Views/Tickets/Index.html";
-
+                function goBacktoMainPage() {
+                    window.location.href = "../../Views/Main/Menu.html";
                 }
 
-                
-                function squareClicked2() {
-                    window.location.href = "../../Views/Faq/faq.html";
-
-                }
-
-                function submitticket() {
-                    window.location.href = "../../Views/Submit/submit.html";
-
-                }
 
         </script>
         
