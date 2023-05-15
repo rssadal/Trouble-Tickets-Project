@@ -37,7 +37,9 @@
     foreach ($tickets as $ticket) {
         ?>
         <div class="ticket">
-            <div><?php echo $ticket[0] .  "&nbsp;&nbsp;&nbsp;" . $ticket[1] . "&nbsp;&nbsp;&nbsp;" .$ticket[2]; ?></div>
+            <div><?php echo $ticket[0]; ?></div>
+            <div><?php echo $ticket[1]; ?></div>
+            <div><?php echo $ticket[2]; ?></div>
         </div>
         <?php
     }
