@@ -4,6 +4,8 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
+        <link rel="stylesheet" href="../../Style/login.css">
+        
 
         <style>
             .squares {
@@ -99,7 +101,7 @@
                 console.log("Username: " + username);
                 console.log("Password: " + password);
 
-                fetch('login.php', {
+                fetch('Login.php', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
