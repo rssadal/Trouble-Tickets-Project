@@ -4,11 +4,13 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
+<<<<<<< HEAD
         <link rel="stylesheet" href="../../Style/login.css">
         <title>New Login</title>
     </head>
     
     <body>
+        <div id="logo"><h2>Solve Us</h2></div>
         <form action="" method="post">
             <h1>
                 Login
@@ -24,6 +26,60 @@
                         <button class="confirm" type="submit">Login</button>
                         <button class="confirm" type="submit">New Register</button>
                     </div>
+=======
+
+        <style>
+            .squares {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+                
+            .square {
+                /* Existing styles for the square */
+                width: 300px;
+                height: 300px;
+                background-color: #ccc;
+                margin: 10px;
+                /* Add the following styles */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .square-image {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            .line1 {
+                display: flex;
+                margin-bottom: 20px;
+            }
+
+            .line2 {
+                display: flex;
+            }
+
+        </style>
+
+        <title>Login</title>
+    </head>
+    
+    <body>
+        <form>
+            <div>
+                <label>Login</label>
+                <input type="text" id="usernameInput"></input>
+
+                <label>Password</label>
+                <input type="password" id="passwordInput"></input>
+
+                <input type="button" value="Log In" onclick="login()">
+                <input type="button" value="Create Account" onclick="createAccount()">
+>>>>>>> 338b1b514a3c4490027fa67223ce6478a761c9e2
             </div>
         </form>
 
