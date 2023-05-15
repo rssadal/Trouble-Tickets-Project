@@ -63,6 +63,16 @@ body{
     cursor: pointer;
 }
 
+.basic{
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
 .confirm:hover {
     background-color: #24be5f;
 }
@@ -70,3 +80,8 @@ body{
 .cancel:hover {
     background-color: #ff4444;
 }
+
+.basic:hover {
+    background-color: #51afc0;
+}
+
