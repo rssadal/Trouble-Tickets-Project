@@ -58,8 +58,36 @@
                     echo '<p class="ticket-description">' . $description . '</p>';
                     echo '</div>';
 
+                    // Retrieve the associated answers
+                    $stmt = $db->prepare('SELECT A.answer FROM Answers A INNER JOIN Ticket_Answer TA ON A.id = TA.answer_id WHERE TA.ticket_id = :ticket_id');
+                    $stmt->bindParam(':ticket_id', $id, SQLITE3_INTEGER);
+                    $result = $stmt->execute();
+
+                    $answers = array();
+
+                    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                        $answer = $row['answer'];
+
+                        $answers[] = $answer;
+                    }
+
+                    // Display the answers
+                    if (!empty($answers)) {
+                        echo '<h2>Answers:</h2>';
+                        foreach ($answers as $answer) {
+                            echo '<div class="ticket-container cdd">';
+                            echo '<p>' . $answer . '</p>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<p>No answers found for this ticket.</p>';
+                    }
+
+                    //////////////////////////////////////////////
+                    
+                    echo '<h2>Add answer</h2>';
             
-                
+    
                     echo '<div id="answering-box">';
                     echo '<textarea id="answer-textarea" rows="4" cols="100" placeholder="Write your answer..."></textarea>';
                     echo '<button onclick="Sendanswer()">Answer</button>';
