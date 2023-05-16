@@ -17,6 +17,19 @@ CREATE TABLE Ticket (
     FOREIGN KEY (user_username) REFERENCES User2(username)
 );
 
+CREATE TABLE Answers (
+    id         INTEGER PRIMARY KEY,
+    answer     TEXT    NOT NULL
+   
+);
+
+CREATE TABLE Ticket_Answer (
+    ticket_id   INTEGER,
+    answer_id   INTEGER,
+    FOREIGN KEY (ticket_id) REFERENCES Ticket(id),
+    FOREIGN KEY (answer_id) REFERENCES Answers(id)
+);
+
 INSERT INTO User2 VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
 INSERT INTO User2 VALUES ('Pedroxx', 'pedro albranaz', '12345', 'pedroxx@gmail.com', 'cliente');
 INSERT INTO User2 VALUES ('franca123', 'francisco franco', 'ilove123', 'francisco.amaizade@hotmail.com', 'cliente');
@@ -28,5 +41,17 @@ INSERT INTO Ticket VALUES (1, 'tech help', '#', '05-05-2023', 'client waiting fo
 INSERT INTO Ticket VALUES (2, 'tech help', '#', '06-05-2023', 'client waiting for tech help', 'waiting','Pedroxx');
 INSERT INTO Ticket VALUES (3, 'marketing', '#', '02-05-2023', 'client waiting for meeting with business team', 'waiting','Pedroxx');
 INSERT INTO Ticket VALUES (4, 'information', '#', '04-05-2023', 'client requires information about a product', 'waiting','franca123');
+
+INSERT INTO Answers VALUES (0, 'This is the answer to the first question.');
+INSERT INTO Answers VALUES (1, 'Here is the answer to the second question.');
+INSERT INTO Answers VALUES (2, 'The answer to the third question is as follows.');
+INSERT INTO Answers VALUES (3, 'For the fourth question, the answer is provided here.');
+INSERT INTO Answers VALUES (4, 'Finally, here is the answer to the fifth question.');
+
+INSERT INTO Ticket_Answer VALUES  (0, 0);
+INSERT INTO Ticket_Answer VALUES  (0, 1);
+INSERT INTO Ticket_Answer VALUES  (0, 2);
+INSERT INTO Ticket_Answer VALUES  (1, 3);
+INSERT INTO Ticket_Answer VALUES  (1, 4);
 
 
