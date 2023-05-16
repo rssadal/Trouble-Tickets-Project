@@ -23,9 +23,9 @@ INSERT INTO User2 VALUES ('franca123', 'francisco franco', 'ilove123', 'francisc
 INSERT INTO User2 VALUES ('user', 'eu', '123', 'francisco.amaizade@hotmail.com', 'cliente');
 INSERT INTO User2 VALUES ('novo', 'eusounovo', '123', 'novo@hotmail.com', 'cliente');
 
-INSERT INTO Ticket VALUES (0, 'marketing', '#', '04-05-2023', 'client waiting for meeting with business team', 'waiting','diogo13350');
-INSERT INTO Ticket VALUES (1, 'tech help', '#', '05-05-2023', 'client waiting for tech help', 'waiting','diogo13350');
-INSERT INTO Ticket VALUES (2, 'tech help', '#', '06-05-2023', 'client waiting for tech help', 'waiting','Pedroxx');
+INSERT INTO Ticket VALUES (0, 'marketing', '#', '04-05-2023', 'Does the IT company have a dedicated customer support team?', 'waiting','diogo13350');
+INSERT INTO Ticket VALUES (1, 'tech help', '#', '05-05-2023', 'How does the IT company ensure data security for its clients?', 'waiting','diogo13350');
+INSERT INTO Ticket VALUES (2, 'tech help', '#', '06-05-2023', 'Does the IT company provide ongoing IT maintenance and support?','Pedroxx');
 INSERT INTO Ticket VALUES (3, 'marketing', '#', '02-05-2023', 'client waiting for meeting with business team', 'waiting','Pedroxx');
 INSERT INTO Ticket VALUES (4, 'information', '#', '04-05-2023', 'client requires information about a product', 'waiting','franca123');
 
