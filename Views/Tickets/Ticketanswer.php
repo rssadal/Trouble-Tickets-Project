@@ -79,18 +79,19 @@
                             echo '<p>' . $answer . '</p>';
                             echo '</div>';
                         }
-                    } else {
+                    } 
+                    else {
                         echo '<p>No answers found for this ticket.</p>';
                     }
 
-                    //////////////////////////////////////////////
+                   
                     
-                    echo '<h2>Add answer</h2>';
-            
-    
+                    echo '<h2>Add answerls</h2>';
+        
+
                     echo '<div id="answering-box">';
                     echo '<textarea id="answer-textarea" rows="4" cols="100" placeholder="Write your answer..."></textarea>';
-                    echo '<button onclick="Sendanswer()">Answer</button>';
+                    echo '<button onclick="Sendanswer(' . $id . ')">Answer</button>';
                     echo '</div>';
 
 
@@ -100,21 +101,38 @@
 
             ?>
            
-            
-    
-
         <script>
             function goBack() {
                 window.location.href = "../../Views/Login/login.html";
             }
 
-            function Sendanswer() {
+            function Sendanswer(ticketId) {
                 console.log("CLIQUEI NO BOTAO");
                 var answerTextarea = document.getElementById("answer-textarea");
                 var answer = answerTextarea.value;
+                console.log(answer);
+                console.log(ticketId);
 
-                
+                var xhr = new XMLHttpRequest();
+
+                xhr.open("POST", "insert_ticket.php", true);
+
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        // Request successful, do something with the response if needed
+                        console.log(xhr.responseText);
+                    }
+                };
+
+                // Prepare the data to be sent
+                var data = "ticketId=" + encodeURIComponent(ticketId) + "&answer=" + encodeURIComponent(answer);
+
+                // Send the request
+                xhr.send(data);
             }
+
         </script>
 
     </body>
