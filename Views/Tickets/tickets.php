@@ -38,9 +38,11 @@
     foreach ($tickets as $ticket) {
         ?>
         <div class="ticket">
-            <div><?php echo $ticket[0]; ?></div>
-            <div><?php echo $ticket[4]; ?></div>
-            <div><?php echo $ticket[3]; ?></div>
+            <a href="Ticketanswer.php?id=<?php echo $ticket[0]; ?>"  class="ticket" target="_blank">
+                <div>
+                    <?php echo "&nbsp;&nbsp;&nbsp;".$ticket[0] . "&nbsp;&nbsp;&nbsp;" . $ticket[4] . "&nbsp;&nbsp;&nbsp;" .$ticket[3]; ?>
+                </div>
+            </a>
         </div>
         <?php
     }

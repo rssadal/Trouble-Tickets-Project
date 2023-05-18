@@ -61,28 +61,6 @@
 
                 console.log("Estou aqui1");
 
-                const xhr = new XMLHttpRequest();
-                xhr.open("POST", "submit.php", true); 
-                console.log("Estou aqui post");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        // Request successful, do something with the response
-                        console.log("Estou aqui2");
-                        console.log(xhr.responseText);
-                    }
-                };
-                
-                console.log("Estou aqui3");
-                // Prepare the data to be sent
-                const data = new FormData();
-                data.append("dateString", dateString);
-                data.append("description", description);
-                data.append("department", department);
-                
-                // Send the request with the data
-                xhr.send(data);
-                console.log("Estou aqui4");
-
                 
             }
 
