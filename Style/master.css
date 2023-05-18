@@ -43,6 +43,11 @@ body{
     cursor: pointer;
 }
 
+#icon > * {
+    float: right;
+    max-width: 5%;
+}
+
 .confirm{
     background-color: #ffffff;
     color: #000000;
@@ -85,3 +90,7 @@ body{
     background-color: #51afc0;
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+}
