@@ -11,7 +11,6 @@
 
 <div id="list">
     <?php
-
     $db = new SQLite3('tickets.db');
 
     // Prepare a SELECT statement to retrieve the columns you want to read

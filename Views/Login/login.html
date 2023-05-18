@@ -5,14 +5,17 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
         <link rel="stylesheet" href="../../Style/login.css">
+        <script src="../../Scripts/master.js"></script>
 
         <title>Login</title>
     </head>
     
     <body>
-        <div onclick="goBacktoMainPage()" id="logo"><h2>Solve Us</h2></div>
+        <header>
+            <div onclick="mainLogin()" id="logo"><h2>Solve Us</h2></div>
+        </header>
 
-        <form action="" method="post">
+        <form method="post">
             <h1>
                 Login
             </h1>
@@ -23,22 +26,17 @@
                 <div>
                     <input type="password" id="passwordInput"></input>
                 </div>
+                <div id="resultContainer" style="display:none;"></div>
                 <div>
-                    <button class="confirm" type="submit" onclick="login()">Enter</button>
-                    <button class="basic" type="submit" onclick="createAccount()">Create Account</button>
+                    <button class="confirm" onclick="login()">Enter</button>
+                    <button class="basic" onclick="createAccount()">Create Account</button>
                 </div>                
             </div>
         </form>
 
-        <div id="resultContainer"></div>
 
         <script>
-
-            var receivedData = "Please Login";
-            displayReceivedData();
-
             var loggedIn = 0;
-
             function login() {
                 console.log("LOG IN BUTTON");
                 var username = document.getElementById("usernameInput").value;
@@ -69,6 +67,7 @@
                     receivedData = data;
                     if(data == 'sucess'){
                         loggedIn = 1;
+                        goBacktoMainPage();
                     }
                     else{
                         loggedIn = 0;
@@ -80,21 +79,30 @@
                 .catch(error => {
                     console.error(error);
                 });
-                }
+            }
 
-                function createAccount() {
-                    console.log("CREATE ACCOUNT BUTTON");
-                    window.location.href = "createacount.html";
-                }
+            function createAccount() {
+                console.log("CREATE ACCOUNT BUTTON");
+                window.location.href = "createacount.html";
+            }
 
+<<<<<<< Updated upstream
+            function displayReceivedData() {
+                var resultContainer = document.getElementById("resultContainer");
+                resultContainer.innerHTML = receivedData;
+            }
+=======
                 function displayReceivedData() {
                     var resultContainer = document.getElementById("resultContainer");
+                    resultContainer.style.display = ""
                     resultContainer.innerHTML = receivedData;
+                    
                 }
+>>>>>>> Stashed changes
 
-                function goBacktoMainPage() {
-                    window.location.href = "../../Views/Main/Menu.html";
-                }
+            function goBacktoMainPage() {
+                window.location.href = "../Main/Index.html";
+            }
 
 
         </script>

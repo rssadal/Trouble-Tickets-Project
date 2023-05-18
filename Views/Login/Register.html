@@ -5,11 +5,17 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
         <link rel="stylesheet" href="../../Style/register.css">
+        <script src="../../Scripts/master.js"></script>
         <title>New Login</title>
     </head>
     
     <body>
-        <div onclick="goBacktoMainPage()" id="logo"><h2>Solve Us</h2></div>
+        <header>
+            <div onclick="mainLogin()" id="logo"><h2>Solve Us</h2></div>
+            <div id="icon">
+                <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
+            </div>
+        </header>
 
         <form method="post">
             <h1>
@@ -29,7 +35,11 @@
                         <input type="password" id="createpassword" name="password" placeholder="Password"></input>
                     </div>
                     <div>
-                        <input type="password" id="createpassword" name="password" placeholder="Confirm Your Password"></input>
+<<<<<<< Updated upstream
+                        <input type="password" id="confirmcreatepassword" name="password" placeholder="Confirm Your Password"></input>
+=======
+                        <input type="password" id="rewritepassword" name="password" placeholder="Confirm Your Password"></input>
+>>>>>>> Stashed changes
                     </div>
                     <div>
                         <button class="confirm" type="submit" onclick="create_acount()">Register</button>
@@ -43,7 +53,7 @@
 
         <script>
             function goBacktoMainPage() {
-                window.location.href = "../../Views/Main/Menu.html";
+                window.location.href = "../Main/Index.html";
             }
 
             function create_acount() {

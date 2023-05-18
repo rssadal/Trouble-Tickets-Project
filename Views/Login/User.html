@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../Style/master.css">
+        <link rel="stylesheet" href="../../Style/user.css">
+        <title>Login</title>
+    </head>
+    
+    <body onload="loadData()">
+        <div onclick="goBacktoMainPage()" id="logo">
+            <h2>Solve Us</h2>
+        </div>
+
+        <div class="box">
+            <h1><label id="name"></label></h1>
+            <div id="forms">
+                <div>
+                    <div><label id="username"></label></div>
+                    <div><label id="email"></label></div>
+                    <div><label id="role"></label></div>
+                </div>
+                <div>
+                    <button class="basic" onclick="edit()">Edit</button>
+                </div>                
+            </div>
+        </div>
+    </body>
+
+    <script>
+        function loadData() {
+            fetch('User.php')
+            .then(response => response.text())
+            .then(data => {
+                // Process the response data
+                var label = document.getElementById('name');
+                var username = document.getElementById('username');
+                var email = document.getElementById('email');
+                var role = document.getElementById('role');
+                label.innerHTML = data.split(',')[0];
+                username.innerHTML = data.split(',')[1];
+                email.innerHTML = data.split(',')[2];
+                role.innerHTML = data.split(',')[3];
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error(error);
+            });
+        }
+        function edit() {
+            window.location.href = "../../Views/Login/Edit.html";
+        }
+    </script>
+</html>

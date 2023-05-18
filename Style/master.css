@@ -4,16 +4,10 @@
     --font_padrão: "Abrashe";
 }
 
-html{
-    width: 100%;
-    height: 100%;
-}
-
 body{
     display:flex;
     flex-direction: column;
     background-color: var(--cor_primaria);
-    height: 80%;
 }
 
 .box{
@@ -41,6 +35,16 @@ body{
     margin-top: 0px;
     padding: 0px;
     cursor: pointer;
+}
+
+#icon > * {
+    max-width: 2em;
+    max-height: 2em;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
 }
 
 .confirm{
@@ -84,4 +88,3 @@ body{
 .basic:hover {
     background-color: #51afc0;
 }
-

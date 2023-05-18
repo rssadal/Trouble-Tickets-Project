@@ -18,9 +18,9 @@
     <body>
 
         <header>
-    
-            <div id="logo" onclick="goBack()">
-                <h2>Solve Us</h2>
+            <div onclick="goBacktoMainPage()" id="logo"><h2>Solve Us</h2></div>
+            <div id="icon">
+                    <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
             </div>
         
         </header>
