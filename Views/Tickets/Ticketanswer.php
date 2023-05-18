@@ -57,13 +57,22 @@
                     $countResult = $countStmt->execute();
                     $totalRows = $countResult->fetchArray(SQLITE3_ASSOC)['total'];
 
-
-
                     echo '<div class="ticket-container cdd">';
                     echo '<h2 class="ticket-id">Ticket ID: ' . $id . '</h2>';
-                    echo '<h3 class="ticket-status-date">Ticket status: ' . $status . ' | Submited ' . $date . '</h3>';
+                    echo '<h3 class="ticket-status-date">Ticket status:';
+
+                    // Dropdown button
+                    echo '<select id="status-dropdown" class="status-dropdown">';
+                    echo '<option selected>' . $status . '</option>';
+                    echo '<option value="Open">Open</option>';
+                    echo '<option value="In Progress">In Progress</option>';
+                    echo '<option value="Resolved">Resolved</option>';
+                    echo '</select>';
+
+                    echo ' | Submited ' . $date . '</h3>';
                     echo '<p class="ticket-description">' . $description . '</p>';
                     echo '</div>';
+
 
                     // Retrieve the associated answers
                     $stmt = $db->prepare('SELECT A.id AS answer_id,A.answer FROM Answers A INNER JOIN Ticket_Answer TA ON A.id = TA.answer_id WHERE TA.ticket_id = :ticket_id');
@@ -157,6 +166,45 @@
                 // Send the request
                 xhr.send(data);
             }
+
+            // Get a reference to the dropdown element
+            var statusDropdown = document.getElementById("status-dropdown");
+            // Attach an event listener for the change event
+            statusDropdown.addEventListener("change", function() {
+                // Get the selected status
+                var selectedStatus = statusDropdown.value;
+
+                // Get the current ticket ID from PHP code
+                var currentTicketId = <?php echo $id; ?>;
+
+                // Send the updated status to the server
+                updateTicketStatus(currentTicketId,selectedStatus);
+                
+            });
+
+            function updateTicketStatus(ticketId,newStatus) {
+                console.log("entrei na funcao de dar update ao status")
+                var xhr = new XMLHttpRequest();
+
+                xhr.open("POST", "update_ticket_status.php", true);
+
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        // Request successful, do something with the response if needed
+                        console.log(xhr.responseText);
+                    }
+                };
+
+                // Prepare the data to be sent
+                var data = "ticketId=" + encodeURIComponent(ticketId) + "&newStatus=" + encodeURIComponent(newStatus);
+
+                // Send the request
+                xhr.send(data);
+   
+            }
+
 
         </script>
 
