@@ -52,6 +52,13 @@
                         $tickets[] = array($id, $department, $hashtag, $date, $description, $status, $username);
                     }
 
+                    // Count the total number of rows in the ticket table
+                    $countStmt = $db->prepare('SELECT COUNT(*) AS total FROM Ticket');
+                    $countResult = $countStmt->execute();
+                    $totalRows = $countResult->fetchArray(SQLITE3_ASSOC)['total'];
+
+
+
                     echo '<div class="ticket-container cdd">';
                     echo '<h2 class="ticket-id">Ticket ID: ' . $id . '</h2>';
                     echo '<h3 class="ticket-status-date">Ticket status: ' . $status . ' | Submited ' . $date . '</h3>';
@@ -59,39 +66,49 @@
                     echo '</div>';
 
                     // Retrieve the associated answers
-                    $stmt = $db->prepare('SELECT A.answer FROM Answers A INNER JOIN Ticket_Answer TA ON A.id = TA.answer_id WHERE TA.ticket_id = :ticket_id');
+                    $stmt = $db->prepare('SELECT A.id AS answer_id,A.answer FROM Answers A INNER JOIN Ticket_Answer TA ON A.id = TA.answer_id WHERE TA.ticket_id = :ticket_id');
                     $stmt->bindParam(':ticket_id', $id, SQLITE3_INTEGER);
                     $result = $stmt->execute();
 
                     $answers = array();
+                    $answerCount=0;
+                    $lastAnswerId;
+                    
+                   
 
                     while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                        $answer = $row['answer'];
-
-                        $answers[] = $answer;
+                        $answerId = $row['answer_id'];
+                        $answerContent = $row['answer'];
+                        $answers[] = array($answerId, $answerContent);
                     }
 
                     // Display the answers
                     if (!empty($answers)) {
+                        $answerCount = count($answers); // Count the number of answers
                         echo '<h2>Answers:</h2>';
                         foreach ($answers as $answer) {
+                            $answerId = $answer[0];
+                            $answerContent = $answer[1];
+                            $lastAnswerId = $answerId; 
                             echo '<div class="ticket-container cdd">';
-                            echo '<p>' . $answer . '</p>';
+                            echo '<h3 class="answer-id">Answer ID: ' . $answerId . '</h3>';
+                            echo '<p>' . $answerContent . '</p>';
                             echo '</div>';
                         }
                     } 
+                    
                     else {
                         echo '<p>No answers found for this ticket.</p>';
                     }
 
                    
                     
-                    echo '<h2>Add answerls</h2>';
+                    echo '<h2>Answer to costumer</h2>';
         
 
                     echo '<div id="answering-box">';
                     echo '<textarea id="answer-textarea" rows="4" cols="100" placeholder="Write your answer..."></textarea>';
-                    echo '<button onclick="Sendanswer(' . $id . ')">Answer</button>';
+                    echo '<button onclick="Sendanswer(' . $id . ', ' . $answerCount . ', ' . $lastAnswerId . ', ' . $totalRows . ')">Answer</button>';
                     echo '</div>';
 
 
@@ -106,12 +123,20 @@
                 window.location.href = "../../Views/Login/login.html";
             }
 
-            function Sendanswer(ticketId) {
+            function Sendanswer(ticketId,answerCount,lastAnswerId,totalRows) {
                 console.log("CLIQUEI NO BOTAO");
                 var answerTextarea = document.getElementById("answer-textarea");
                 var answer = answerTextarea.value;
+
                 console.log(answer);
                 console.log(ticketId);
+
+                console.log(answerCount); // Access the answer count parameter
+                console.log(lastAnswerId); // last id of the answer
+
+                console.log(totalRows); // last id of the answer
+
+            
 
                 var xhr = new XMLHttpRequest();
 
@@ -127,7 +152,7 @@
                 };
 
                 // Prepare the data to be sent
-                var data = "ticketId=" + encodeURIComponent(ticketId) + "&answer=" + encodeURIComponent(answer);
+                var data = "ticketId=" + encodeURIComponent(ticketId) + "&answer=" + encodeURIComponent(answer)+  "&lastAnswerId=" + encodeURIComponent(lastAnswerId)+  "&totalRows=" + encodeURIComponent(totalRows);
 
                 // Send the request
                 xhr.send(data);
