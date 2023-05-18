@@ -77,6 +77,7 @@
                     receivedData = data;
                     if(data == 'sucess'){
                         loggedIn = 1;
+                        goBacktoMainPage();
                     }
                     else{
                         loggedIn = 0;
@@ -88,21 +89,21 @@
                 .catch(error => {
                     console.error(error);
                 });
-                }
+            }
 
-                function createAccount() {
-                    console.log("CREATE ACCOUNT BUTTON");
-                    window.location.href = "createacount.html";
-                }
+            function createAccount() {
+                console.log("CREATE ACCOUNT BUTTON");
+                window.location.href = "createacount.html";
+            }
 
-                function displayReceivedData() {
-                    var resultContainer = document.getElementById("resultContainer");
-                    resultContainer.innerHTML = receivedData;
-                }
+            function displayReceivedData() {
+                var resultContainer = document.getElementById("resultContainer");
+                resultContainer.innerHTML = receivedData;
+            }
 
-                function goBacktoMainPage() {
-                    window.location.href = "../../Views/Main/Menu.html";
-                }
+            function goBacktoMainPage() {
+                window.location.href = "../Main/Index.html";
+            }
 
 
         </script>

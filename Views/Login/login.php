@@ -1,33 +1,39 @@
 <?php
+    
+    session_start();
+    include_once('connect.php');
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     // Authenticate the user and send a response
     
     //  Open the SQLite3 database
-    $db = new SQLite3('users.db');
+    global $db;
 
     // Prepare a SELECT statement to retrieve the column you want to read
-    $stmt = $db->prepare('SELECT username, password2 FROM User2');
+    $stmt = $db->prepare('SELECT id FROM User2 WHERE username == :username AND password2 == :password2');
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password2', $password);
     $result = $stmt->execute();
 
-    
-    // Loop through the results and read each value
-    while ($row = $result->fetchArray()) {
-        // Read the value of the column
-        $value = $row['username'];
-        $value2 = $row['password2'];
-        // Do something with the value, such as print it
-        //echo $value . "<br>";
-        
-        if ($value == $username && $value2 == $password) {
-            // Perform an action if the condition is true, such as printing the value
-            echo "sucess";
-            return;
-        }
+    if (!$result) {
+        echo "Error fetching from db";
+        throw new Exception('Query execution failed');
     }
 
-    echo "failed";
-    $db->close();
-       
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($result) {
+        if ($row[id] != null) {
+            $_SESSION['id'] = $row['id'];
+            echo "sucess";
+        } else {
+            echo "username and password didn't match";
+        }
+    } else {
+        echo "Error fetching from db";
+        throw new Exception('Query execution failed');
+    }
+
+    $db = null;
 ?>

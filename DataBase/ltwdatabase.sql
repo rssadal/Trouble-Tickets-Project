@@ -6,9 +6,9 @@ BEGIN TRANSACTION;
 
 -- Table: User2
 DROP TABLE IF EXISTS User2;
-
 CREATE TABLE User2 (
-    username    TEXT    PRIMARY KEY,
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    username    TEXT    NOT NULL,
     nome        TEXT    NOT NULL,
     password2   TEXT    NOT NULL,
     email       TEXT    NOT NULL,
@@ -19,21 +19,22 @@ CREATE TABLE User2 (
 DROP TABLE IF EXISTS Ticket;
 CREATE TABLE Ticket (
     id              INTEGER PRIMARY KEY,
-    department      TEXT    NOT NULL,
+    department_id   INTEGER NOT NULL,
     hashtag         TEXT    NOT NULL,
     date2           TEXT,
     description2    TEXT    NOT NULL,
     status2         TEXT    NOT NULL,
-    user_username   TEXT,
-    FOREIGN KEY (user_username) REFERENCES User2(username)
+    user_id         TEXT,
+    FOREIGN KEY (user_id) REFERENCES User2(id)
+    FOREIGN KEY (department_id) REFERENCES Department(id)
 );
 
 -- Table: UsernameTicket
 DROP TABLE IF EXISTS UsernameTicket;
-CREATE TABLE UsernameTicket (
-    user_username   TEXT,
+CREATE TABLE AgentTicket (
+    user_id   TEXT,
     ticket_id       INTEGER,
-    FOREIGN KEY (user_username) REFERENCES User2(username),
+    FOREIGN KEY (user_id) REFERENCES User2(id),
     FOREIGN KEY (ticket_id) REFERENCES Ticket(id)
 );
 
@@ -49,7 +50,7 @@ DROP TABLE IF EXISTS Faq;
 CREATE TABLE Faq (
     id              INTEGER PRIMARY KEY,
     title           TEXT    NOT NULL,
-    Description     TEXT    NOT NULL,
+    description     TEXT    NOT NULL,
     date2           TEXT    NOT NULL
 );
 
@@ -69,9 +70,12 @@ PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
 -- Insert data into User2 table
-INSERT INTO User2 VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
-INSERT INTO User2 VALUES ('Pedroxx', 'pedro albranaz', '12345', 'pedroxx@gmail.com', 'cliente');
-INSERT INTO User2 VALUES ('franca123', 'francisco franco', 'ilove123', 'francisco.amaizade@hotmail.com', 'cliente');
+-- INSERT INTO User2 VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
+-- INSERT INTO User2 VALUES ('Pedroxx', 'pedro albranaz', '12345', 'pedroxx@gmail.com', 'cliente');
+-- INSERT INTO User2 VALUES ('franca123', 'francisco franco', 'ilove123', 'francisco.amaizade@hotmail.com', 'cliente');
+
+INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
+INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('Pedroxx', 'diogo camara', 'Adivinha', 'pedroxx@gmail.com', 'cliente');
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
