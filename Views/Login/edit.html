@@ -33,15 +33,19 @@
             </div>
             <div>
                 <button class="confirm" type="submit">Save</button>
-                <button class="cancel" type="button" onclick="goBacktoMainPage()">Cancel</button>
+                <button class="cancel" type="button" onclick="goToProfile()">Cancel</button>
             </div>
         </div>
     </form>
 
     <script>
         function goBacktoMainPage() {
-                    window.location.href = "../../Views/Main/Index.html";
-                }
+            window.location.href = "../Main/Index.html";
+        }
+
+        function goToProfile() {
+            window.location.href = "User.html";
+        }
     </script>
 </body>
 </html>

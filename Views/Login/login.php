@@ -24,7 +24,7 @@
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($result) {
-        if ($row[id] != null) {
+        if ($row["id"] != null) {
             $_SESSION['id'] = $row['id'];
             echo "sucess";
         } else {

@@ -22,7 +22,7 @@
             <div id="logo" onclick="goBack()">
                 <h2>Solve Us</h2>
             </div>
-            <div id="icon">
+            <div id="icon" onclick="goToProfile()">
                 <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
             </div>
         </header>
@@ -49,7 +49,11 @@
         <script>
 
                 function goBack() {
-                    window.location.href = "../../Views/Main/Menu.html";
+                    window.location.href = "../../Views/Main/Index.html";
+                }
+
+                function goToProfile() {
+                    window.location.href = "../../Views/Login/User.html";
                 }
 
         </script>
