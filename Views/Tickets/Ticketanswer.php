@@ -146,9 +146,33 @@
 
             function sendMessage(ticketId){
                 console.log("CLIQUEI NO BOTAO");
-                var department = document.getElementById("message-input").value;
-                console.log(department);
+                var messageinput = document.getElementById("message-input").value;
+
+
+                console.log(messageinput);
                 console.log('Sending message for ticket ID: ' + ticketId);
+
+                var formData = new FormData();
+                formData.append('ticketId', ticketId);
+                formData.append('messageinput', messageinput); // Add the department value to formData
+
+                
+            
+                fetch('add_answer_to_ticket.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text()) // Extract the response text
+                .then(data => {
+                    // Handle the response text from the PHP script
+                    console.log('Response:', data);
+                    // You can perform further actions based on the response text
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the request
+                    console.error('Error:', error);
+                });
+                
                 
             }
 
