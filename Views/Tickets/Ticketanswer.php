@@ -72,58 +72,70 @@
                     echo ' | Submited ' . $date . '</h3>';
                     echo '<p class="ticket-description">' . $description . '</p>';
                     echo '</div>';
-
-
-                    // Retrieve the associated answers
-                    $stmt = $db->prepare('SELECT A.id AS answer_id,A.answer FROM Answers A INNER JOIN Ticket_Answer TA ON A.id = TA.answer_id WHERE TA.ticket_id = :ticket_id');
-                    $stmt->bindParam(':ticket_id', $id, SQLITE3_INTEGER);
-                    $result = $stmt->execute();
-
-                    $answers = array();
-                    $answerCount=0;
-                    $lastAnswerId;
-                    
                    
 
-                    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                        $answerId = $row['answer_id'];
-                        $answerContent = $row['answer'];
-                        $answers[] = array($answerId, $answerContent);
-                    }
-
-                    // Display the answers
-                    if (!empty($answers)) {
-                        $answerCount = count($answers); // Count the number of answers
-                        echo '<h2>Answers:</h2>';
-                        foreach ($answers as $answer) {
-                            $answerId = $answer[0];
-                            $answerContent = $answer[1];
-                            $lastAnswerId = $answerId; 
-                            echo '<div class="ticket-container cdd">';
-                            echo '<h3 class="answer-id">Answer ID: ' . $answerId . '</h3>';
-                            echo '<p>' . $answerContent . '</p>';
-                            echo '</div>';
-                        }
-                    } 
-                    
-                    else {
-                        echo '<p>No answers found for this ticket.</p>';
-                    }
-
-                   
-                    
-                    echo '<h2>Answer to costumer</h2>';
-        
-
-                    echo '<div id="answering-box">';
-                    echo '<textarea id="answer-textarea" rows="4" cols="100" placeholder="Write your answer..."></textarea>';
-                    echo '<button onclick="Sendanswer(' . $id . ', ' . $answerCount . ', ' . $lastAnswerId . ', ' . $totalRows . ')">Answer</button>';
-                    echo '</div>';
-
-
-                } else {
+                } 
+                
+                else {
                     echo "No ID provided.";
                 }
+
+                //GET NUMBER OF ASSOCIATED ANSWER TO THIS TICKET
+                $query = $db->prepare('
+                SELECT COUNT(*) AS answer_count
+                FROM Ticket_Answer
+                JOIN Answers ON Ticket_Answer.answer_id = Answers.id
+                WHERE Ticket_Answer.ticket_id = :ticket_id
+                ');
+                $query->bindValue(':ticket_id', $id, SQLITE3_INTEGER);
+                
+                // Execute the query and fetch the result
+                $result = $query->execute();
+                $row = $result->fetchArray(SQLITE3_ASSOC);
+                
+                // Retrieve the answer count
+                $answerCount = $row['answer_count'];
+                
+                // Output the answer count
+                echo "Ticket ID " . $id . " is associated with " . $answerCount . " answer(s).";
+            
+
+                $query = $db->prepare('
+                SELECT Answers.answer
+                FROM Ticket
+                JOIN Ticket_Answer ON Ticket.id = Ticket_Answer.ticket_id
+                JOIN Answers ON Ticket_Answer.answer_id = Answers.id
+                WHERE Ticket.id = :ticket_id
+                ');
+                $query->bindValue(':ticket_id', $id, SQLITE3_INTEGER);
+
+                // Execute the query and fetch the results
+                $result = $query->execute();
+
+                // Loop through the results and output the response answers
+                while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                    echo "Response: " . $row['answer'] . "\n";
+                }
+
+                // Close the database connection
+                $db->close();
+
+
+
+
+
+  
+                // Message input box and button
+                echo '<div class="message-box">';
+                echo '<textarea id="message-input" class="message-input" placeholder="Write your message here"></textarea>';
+                echo '<button id="send-button" class="send-button" onclick="sendMessage(' . $id . ')">Send</button>';
+                echo '</div>';
+
+
+
+ 
+
+
 
             ?>
            
@@ -132,40 +144,15 @@
                 window.location.href = "../../Views/Login/login.html";
             }
 
-            function Sendanswer(ticketId,answerCount,lastAnswerId,totalRows) {
+            function sendMessage(ticketId){
                 console.log("CLIQUEI NO BOTAO");
-                var answerTextarea = document.getElementById("answer-textarea");
-                var answer = answerTextarea.value;
-
-                console.log(answer);
-                console.log(ticketId);
-
-                console.log(answerCount); // Access the answer count parameter
-                console.log(lastAnswerId); // last id of the answer
-
-                console.log(totalRows); // last id of the answer
+                var department = document.getElementById("message-input").value;
+                console.log(department);
+                console.log('Sending message for ticket ID: ' + ticketId);
+                
+            }
 
             
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open("POST", "insert_ticket.php", true);
-
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        // Request successful, do something with the response if needed
-                        console.log(xhr.responseText);
-                    }
-                };
-
-                // Prepare the data to be sent
-                var data = "ticketId=" + encodeURIComponent(ticketId) + "&answer=" + encodeURIComponent(answer)+  "&lastAnswerId=" + encodeURIComponent(lastAnswerId)+  "&totalRows=" + encodeURIComponent(totalRows);
-
-                // Send the request
-                xhr.send(data);
-            }
 
             // Get a reference to the dropdown element
             var statusDropdown = document.getElementById("status-dropdown");
