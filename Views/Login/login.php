@@ -11,6 +11,9 @@
     //  Open the SQLite3 database
     global $db;
 
+    //$db = new SQLite3('tickets.db');
+
+
     // Prepare a SELECT statement to retrieve the column you want to read
     $stmt = $db->prepare('SELECT id FROM User2 WHERE username == :username AND password2 == :password2');
     $stmt->bindParam(':username', $username);

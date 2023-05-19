@@ -172,6 +172,8 @@
                     // Handle any errors that occurred during the request
                     console.error('Error:', error);
                 });
+
+                location.reload();
                 
                 
             }
@@ -215,6 +217,8 @@
                 xhr.send(data);
    
             }
+
+          
 
 
         </script>
