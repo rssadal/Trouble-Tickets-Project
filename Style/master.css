@@ -88,9 +88,3 @@ header {
 .basic:hover {
     background-color: #51afc0;
 }
-
-#usernameInput {
-    width: 800px;
-    height: 40px;
-    font-size: 16px;
-  }
