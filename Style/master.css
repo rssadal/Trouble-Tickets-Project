@@ -4,6 +4,10 @@
     --font_padrão: "Abrashe";
 }
 
+h1 {
+    font-family: var(--font_logo);
+}
+
 body{
     display:flex;
     flex-direction: column;
