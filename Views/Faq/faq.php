@@ -19,12 +19,14 @@
 
     // Loop through the results and read each row into the $tickets array
     while ($row = $stmt->fetchALL(PDO::FETCH_ASSOC)) {
-        $id = $row['id'];
-        $title = $row['title'];
-        $Description = $row['Description'];
-        $date2 = $row['date2'];
+        foreach ($row as $rowItem){
+            $id = $rowItem['id'];
+            $title = $rowItem['title'];
+            $Description = $rowItem['Description'];
+            $date2 = $rowItem['date2'];
        
-        $tickets[] = array($id, $title, $Description, $date2);
+            $tickets[] = array($id, $title, $Description, $date2);
+       }
     }
 
     // Close the database connection
