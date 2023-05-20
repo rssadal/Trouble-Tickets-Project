@@ -21,6 +21,7 @@ CREATE TABLE Ticket (
     id              INTEGER PRIMARY KEY,
     department_id   INTEGER NOT NULL,
     hashtag         TEXT    NOT NULL,
+    title           TEXT    NOT NULL,
     date2           TEXT,
     description2    TEXT    NOT NULL,
     status2         TEXT    NOT NULL,
