@@ -1,13 +1,13 @@
 <?php
     session_start();
-    include_once('connect.php');
+    include_once('../Login/connect.php');
 
     // $db = new SQLite3('database.db');
 
     global $db;
 
     // Prepare a SELECT statement to retrieve the columns you want to read
-    $stmt = $db->prepare('SELECT id, title,  Description, date2  FROM Faq');
+    $stmt = $db->prepare('SELECT *  FROM Faq');
     $result = $stmt->execute();
 
     if (!$result) {
