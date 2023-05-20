@@ -10,7 +10,15 @@
     </head>
     
     <body>
-        <div id="logo"><h2>Solve Us</h2></div>
+       
+
+
+        <header>
+            <div id="logo"><h2>Solve Us</h2></div>
+            <div onclick="goToProfile()" id="icon">
+                <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
+            </div>
+        </header>
         
         <div class="squares">
             <div class="line1">
@@ -28,11 +36,15 @@
             </div>
 
             <div class="line2">
-                <div class="square" onclick="submitticket()">
-                    <img src="../../Images/profile.jpg" alt="Image" class="square-image">
+                <div class="square" onclick="ti_tickets()">
+                    <img src="../../Images/it.jpg" alt="Image" class="square-image">
                 </div>
-                <div class="square"></div>
-                <div class="square"></div>
+                <div class="square" onclick="submitticket()">
+                    <img src="../../Images/info.jpg" alt="Image" class="square-image">
+                </div>
+                <div class="square" onclick="submitticket()">
+                    <img src="../../Images/marketing.jpg" alt="Image" class="square-image">
+                </div>
             </div>
         </div>
     
@@ -43,6 +55,11 @@
                 window.location.href = "../../Views/Tickets/Index.html";
 
             }
+          
+            function ti_tickets() {
+                window.location.href = "../../Views/Tickets/ti_tickets.html";
+            }
+
 
             
             function squareClicked2() {
@@ -53,6 +70,10 @@
             function submitticket() {
                 window.location.href = "../../Views/Tickets/send_ticket.html";
 
+            }
+
+            function goToProfile() {
+                    window.location.href = "../../Views/Login/User.html";
             }
     </script>
 

@@ -11,22 +11,29 @@
     <body>
         <div onclick="goBacktoMainPage()" id="logo"><h2>Solve Us</h2></div>
 
-        <div>
-            <label for="department">Department:</label>
-            <select id="department" name="department">
-                <option value="marketing">Marketing</option>
-                <option value="tech help">Tech Help</option>
-                <option value="information">Information</option>
-            </select>
+        <div class="box">
+            <h1>
+                Submit Ticket
+            </h1>
+            <div>
+                <label for="department">Department:</label>
+                <select id="department" name="department">
+                    <option value="marketing">Marketing</option>
+                    <option value="tech help">Tech Help</option>
+                    <option value="information">Information</option>
+                </select>
+            </div>
+    
+            <div>
+                <input type="text" id="usernameInput"></input>
+            </div>
+    
+            <div>
+                <button class="confirm" type="submit" onclick="Send()">Enter</button>
+            </div>  
         </div>
 
-        <div>
-            <input type="text" id="usernameInput"></input>
-        </div>
-
-        <div>
-            <button class="confirm" type="submit" onclick="Send()">Enter</button>
-        </div>                
+                    
 
         <script>
             function Send() {
@@ -54,7 +61,7 @@
             }
 
             function goBacktoMainPage() {
-                window.location.href = "../../Views/Main/Menu.html";
+                window.location.href = "../../Views/Main/Index.html";
             }
         </script>
     </body>

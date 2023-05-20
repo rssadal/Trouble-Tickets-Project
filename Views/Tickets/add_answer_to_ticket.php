@@ -4,6 +4,12 @@
 $ticketId = $_POST['ticketId'];
 $messageinput = $_POST['messageinput'];
 
+session_start();
+$id = $_SESSION['id'];
+
+$response = 'USER LOGGED IN WITH ID: ' . $id . ' . ' ;
+echo $response;
+
 $db = new SQLite3('tickets.db');
 
 // Execute SQL query to get the number of rows in the "Answers" table
@@ -37,7 +43,7 @@ else {
             echo "Error executing query: " . $db->lastErrorMsg();
         } else {
             // Return the answer count as the response
-            echo "ADICIONE RESPOTA A ESTE TICKET";
+            echo "ADICIONEI RESPOTSA A ESTE TICKET";
         }
     }
 }

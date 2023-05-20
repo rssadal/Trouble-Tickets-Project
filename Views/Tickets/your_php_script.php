@@ -1,13 +1,29 @@
 <?php
 // your_php_script.php
 
+
+
 if (isset($_POST['ticketText']) && isset($_POST['department'])) {
+
+    session_start();
+    $id = $_SESSION['id'];
+
+    $response = 'USER LOGGED IN WITH ID: ' . $id . ' . ' ;
+    echo $response;
+
+
+
     $ticketText = $_POST['ticketText'];
     $department = $_POST['department'];
     $dateString = $_POST['dateString'];
     $date = date('d-m-Y'); // Get the current date
 
     $db = new SQLite3('tickets.db');
+
+   
+
+
+
 
     $result = $db->query('SELECT * FROM Ticket');
 
@@ -33,13 +49,13 @@ if (isset($_POST['ticketText']) && isset($_POST['department'])) {
     $stmt->bindValue(':date2', $date, SQLITE3_TEXT);
     $stmt->bindValue(':description2', $ticketText, SQLITE3_TEXT);
     $stmt->bindValue(':status2', 'waiting', SQLITE3_TEXT);
-    $stmt->bindValue(':user_username', 'diogo13350', SQLITE3_TEXT); // Replace 'your_username' with an actual value
+    $stmt->bindValue(':user_username',"default user", SQLITE3_TEXT); // Replace 'your_username' with an actual value
     $stmt->execute();
 
     $db->close();
     
     // Prepare the response
-    $response = 'Received ticket text: ' . $ticketText . ', Department: ' . $department . ', Total rows in ticket table: ' . $rowCount . ', Date: ' . $date;
+    $response = 'Received ticket text: ' . $ticketText . ', Department: ' . $department . ', Total rows in ticket table: ' . $rowCount ;
 
 } else {
     $response = 'No ticket text provided.';

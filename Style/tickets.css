@@ -32,15 +32,21 @@
 .ticket-container {
     border: 2px solid black;
     padding: 10px;
-    background-color: rgb(82, 78, 78);
+    background-color: rgb(160, 156, 156);
     border-radius: 5px;
   }
   
   .ticket-id {
-    color: darkgrey;
+    color: rgb(0, 0, 0);
   }
   
   .ticket-status-date {
-    color: green;
+    color: rgb(0, 0, 0);
   }
+
+  .answer-id {
+    border-bottom: 1px solid black;
+    display: block;
+    margin-bottom: 10px;
+}
   
