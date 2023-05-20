@@ -9,7 +9,13 @@
     </head>
     
     <body>
-        <div onclick="goBacktoMainPage()" id="logo"><h2>Solve Us</h2></div>
+        <header>
+            <div onclick="goBacktoMainPage()" id="logo"><h2>Solve Us</h2></div>
+            <div onclick="goToProfile()" id="icon">
+                <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
+            </div>
+        </header>
+     
 
         <div class="box">
             <h1>
@@ -62,6 +68,10 @@
 
             function goBacktoMainPage() {
                 window.location.href = "../../Views/Main/Index.html";
+            }
+
+            function goToProfile() {
+                    window.location.href = "../../Views/Login/User.html";
             }
         </script>
     </body>

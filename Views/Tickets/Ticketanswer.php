@@ -27,7 +27,7 @@
         </header>
 
             <h1>
-                Ticket Answering
+                Ticket Solver
             </h1>
          
             <h2>
