@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 CREATE TABLE User2 (
     username    TEXT    PRIMARY KEY,
     nome        TEXT    NOT NULL,
@@ -45,11 +45,11 @@ INSERT INTO User2 VALUES ('user', 'eu', '123', 'francisco.amaizade@hotmail.com',
 INSERT INTO User2 VALUES ('novo', 'eusounovo', '123', 'novo@hotmail.com', 'cliente');
 INSERT INTO User2 VALUES ('maria69', 'maria69', '69', 'maria@hotmail.com', 'Services');
 
-INSERT INTO Ticket VALUES (0, 'marketing', '#', '04-05-2023', 'client waiting for meeting with business team', 'waiting','diogo13350');
-INSERT INTO Ticket VALUES (1, 'tech help', '#', '05-05-2023', 'client waiting for tech help', 'waiting','diogo13350');
-INSERT INTO Ticket VALUES (2, 'tech help', '#', '06-05-2023', 'client waiting for tech help', 'waiting','Pedroxx');
-INSERT INTO Ticket VALUES (3, 'marketing', '#', '02-05-2023', 'client waiting for meeting with business team', 'waiting','Pedroxx');
-INSERT INTO Ticket VALUES (4, 'information', '#', '04-05-2023', 'client requires information about a product', 'waiting','franca123');
+INSERT INTO Ticket VALUES (0, 'Marketing', '#', '04-05-2023', 'client waiting for meeting with business team', 'waiting','diogo13350');
+INSERT INTO Ticket VALUES (1, 'Tech Help', '#', '05-05-2023', 'client waiting for tech help', 'waiting','diogo13350');
+INSERT INTO Ticket VALUES (2, 'Tech Help', '#', '06-05-2023', 'client waiting for tech help', 'waiting','Pedroxx');
+INSERT INTO Ticket VALUES (3, 'Marketing', '#', '02-05-2023', 'client waiting for meeting with business team', 'waiting','Pedroxx');
+INSERT INTO Ticket VALUES (4, 'Information', '#', '04-05-2023', 'client requires information about a product', 'waiting','franca123');
 
 INSERT INTO Answers VALUES (0, 'This is the answer to the first question.');
 INSERT INTO Answers VALUES (1, 'Here is the answer to the second question.');

@@ -79,9 +79,9 @@
                     // Dropdown for department
                     echo '<select id="department-dropdown" class="department-dropdown">';
                     echo '<option value="' . $department . '" selected>' . $department . '</option>';
-                    echo '<option value="IT">IT</option>';
-                    echo '<option value="Finance">Finance</option>';
-                    echo '<option value="HR">HR</option>';
+                    echo '<option value="Marketing">Marketing</option>';
+                    echo '<option value="Tech Help">Tech Help</option>';
+                    echo '<option value="Information">Information</option>';
                     echo '</select>';
                 
                     echo ' | Submitted ' . $date . '</h3>';

@@ -36,7 +36,7 @@
 
     //Escolhemos qual a informacao queremos no ecrã
     foreach ($tickets as $ticket) {
-        if ($ticket[1] === 'Tech Help') {
+        if ($ticket[1] === 'Information') {
             ?>
             <div class="ticket">
                 <a href="Ticketanswer.php?id=<?php echo $ticket[0]; ?>" class="ticket" target="_blank">
