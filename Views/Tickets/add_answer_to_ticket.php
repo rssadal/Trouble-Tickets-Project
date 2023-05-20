@@ -43,7 +43,7 @@ else {
             echo "Error executing query: " . $db->lastErrorMsg();
         } else {
             // Return the answer count as the response
-            echo "ADICIONEI RESPOTSA A ESTE TICKET";
+            echo "ADICIONEI RESPOSTA A ESTE TICKET";
         }
     }
 }

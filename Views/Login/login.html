@@ -28,8 +28,8 @@
                 </div>
                 <div id="resultContainer" style="display:none;"></div>
                 <div>
-                    <button class="confirm" onclick="login()">Enter</button>
-                    <button class="basic" onclick="createAccount()">Create Account</button>
+                    <button class="basic" type="button" onclick="createAccount()">Create Account</button>
+                    <button class="confirm" type="button" onclick="login()">Enter</button>
                 </div>                
             </div>
         </form>
@@ -83,7 +83,7 @@
 
             function createAccount() {
                 console.log("CREATE ACCOUNT BUTTON");
-                window.location.href = "createacount.html";
+                window.location.href = "Register.html";
             }
 
             function displayReceivedData() {

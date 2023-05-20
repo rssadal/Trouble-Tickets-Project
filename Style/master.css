@@ -4,6 +4,10 @@
     --font_padrão: "Abrashe";
 }
 
+h1 {
+    font-family: var(--font_logo);
+}
+
 body{
     display:flex;
     flex-direction: column;
@@ -89,6 +93,7 @@ header {
     background-color: #51afc0;
 }
 
+
 #usernameInput {
     width: 800px;
     height: 40px;
@@ -105,3 +110,4 @@ bottom: 20px; /* Adjust the spacing value as per your preference */
 left: 0;
 width: 100%;
 }
+
