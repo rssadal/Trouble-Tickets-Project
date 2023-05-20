@@ -60,7 +60,7 @@
     // Execute the INSERT statement and check if it was successful
     if ($result) {
         // The row was inserted successfully
-        $id = $_SESSION['id'];
+        $username = $_SESSION['username'];
         echo "Account created successfully";
     } else {
         // There was an error inserting the row
@@ -73,7 +73,4 @@
     
     
 ?>
-
-
-
 

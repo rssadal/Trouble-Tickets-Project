@@ -1,28 +1,24 @@
-<style>
-    .ticket {
-        background-color: #f5f5f5;
-        border: 1px solid #ddd;
-        padding: 10px;
-        margin-bottom: 10px;
-        margin-right: 10px;
+<?php
+    session_start();
+    include_once('connect.php');
 
-    }
-</style>
+    // $db = new SQLite3('database.db');
 
-<div id="list">
-    <?php
-
-    $db = new SQLite3('database.db');
-
+    global $db;
 
     // Prepare a SELECT statement to retrieve the columns you want to read
     $stmt = $db->prepare('SELECT id, title,  Description, date2  FROM Faq');
     $result = $stmt->execute();
 
+    if (!$result) {
+        echo "Error fetching from db";
+        throw new Exception('Query execution failed');
+    }
+
     $tickets = array();
 
     // Loop through the results and read each row into the $tickets array
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+    while ($row = $stmt->fetchALL(PDO::FETCH_ASSOC)) {
         $id = $row['id'];
         $title = $row['title'];
         $Description = $row['Description'];
@@ -31,7 +27,8 @@
         $tickets[] = array($id, $title, $Description, $date2);
     }
 
-    $db->close();
+    // Close the database connection
+    $db = null;
 
     //Escolhemos qual a informacao queremos no ecrã
     foreach ($tickets as $ticket) {
@@ -43,5 +40,4 @@
         </div>
         <?php
     }
-    ?>
-</div>
+?>
