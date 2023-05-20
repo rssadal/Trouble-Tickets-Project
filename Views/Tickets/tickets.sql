@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREATE TABLE User2 (
     username    TEXT    PRIMARY KEY,
     nome        TEXT    NOT NULL,
