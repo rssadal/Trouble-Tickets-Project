@@ -15,7 +15,7 @@
 
 
     // Prepare a SELECT statement to retrieve the column you want to read
-    $stmt = $db->prepare('SELECT id FROM User2 WHERE username == :username AND password2 == :password2');
+    $stmt = $db->prepare('SELECT username, password2 FROM User2 WHERE username == :username AND password2 == :password2');
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':password2', $password);
     $result = $stmt->execute();
@@ -27,8 +27,8 @@
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($result) {
-        if ($row["id"] != null) {
-            $_SESSION['id'] = $row['id'];
+        if ($row["username"] != null) {
+            $_SESSION['username'] = $row['username'];
             echo "sucess";
         } else {
             echo "username and password didn't match";

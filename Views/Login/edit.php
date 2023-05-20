@@ -11,12 +11,12 @@
 
   // Open the SQLite3 database  
 
-  $id = $_SESSION['id'];
+  $currentUsername = $_SESSION['username'];
 
   try {
     global $db;
-    $stmt = $db->prepare('SELECT nome, email, username, role2 FROM User2 WHERE id != :id;');
-    $stmt->bindParam(':id', $id);
+    $stmt = $db->prepare('SELECT nome, email, role2 FROM User2 WHERE username != :username;');
+    $stmt->bindParam(':username', $currentUsername);
     $result = $stmt->execute(); 
 
     if (!$result) {
@@ -26,17 +26,15 @@
 
     while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
       foreach ($row as $rowItem){
-        $currentUsername = $rowItem['username'];
-        $currentEmail = $rowItem['email'];
-        $currentName = $rowItem['nome'];
-        $currentRole2 = $rowItem['role2'];
+        $existentUsername = $rowItem['username'];
+        $existentEmail = $rowItem['email'];
         
-        if ($currentUsername === $username) {
+        if ($existentUsername === $username) {
           echo "An account with this username already exists. Please try another one.";
           exit();
         }
 
-        if ($currentEmail === $email) {
+        if ($existentEmail === $email) {
           echo "An account with this email already exists. Please try another one.";
           exit();
         }
@@ -48,13 +46,13 @@
    
 
   // Update the user's information in the database
-  $stmt = $db->prepare("UPDATE User2 SET role2 = :role2, username = :username, password2 = :password, nome = :name, email = :email WHERE id = :id");
+  $stmt = $db->prepare("UPDATE User2 SET role2 = :role2, username = :username, password2 = :password, nome = :name, email = :email WHERE username = :currentUsername");
   $stmt->bindValue(':username', $username);
   $stmt->bindValue(':password', $password);
   $stmt->bindValue(':name', $name);
   $stmt->bindValue(':email', $email);
   $stmt->bindValue(':role2', $role);
-  $stmt->bindValue(':id', $id);
+  $stmt->bindValue(':currentUsername', $currentUsername);
   $result = $stmt->execute();
 
   if ($result) {
