@@ -37,35 +37,79 @@
             </div>
 
             <div class="line2">
-                <div class="square" onclick="ti_tickets()">
+
+
+                <div class="square2" onclick="ti_tickets()">
                     <img src="../../Images/it.jpg" alt="Image" class="square-image">
                 </div>
-                <div class="square" onclick="submitticket()">
+
+                <div class="square2" onclick="info_tickets()">
                     <img src="../../Images/info.jpg" alt="Image" class="square-image">
                 </div>
-                <div class="square" onclick="submitticket()">
+
+                <div class="square2" onclick="marketingticket()">
                     <img src="../../Images/marketing.jpg" alt="Image" class="square-image">
                 </div>
+
             </div>
+
+
+
+        </div>
+
+        <div class="footer">
+            University of Porto
         </div>
     
     </body>
 
     <script>
+
+            var userRole = "client";
+
+            function checkUserRole(){  
+
+                if (userRole === "client") {
+
+                    //var squares2 = document.getElementsByClassName("square2");
+
+                    console.log("nvdzkjzvnz");
+                   // for (var j = 0; j < squares2.length; j++) {
+                   //     squares2[j].removeAttribute("onclick");
+                   // }
+
+                    
+                    
+                }
+
+            }
+
+            // Call the checkUserRole function when the page loads
+            window.onload = function() {
+                checkUserRole();
+            };
+
+
+
             function squareClicked() {
                 window.location.href = "../../Views/Tickets/Index.html";
 
+            }
+         
+            function marketingticket() {
+                window.location.href = "../../Views/Tickets/marketing.html";
             }
           
             function ti_tickets() {
                 window.location.href = "../../Views/Tickets/ti_tickets.html";
             }
 
+            function info_tickets(){
+                window.location.href = "../../Views/Tickets/information.html";
+            }
 
-            
             function squareClicked2() {
                 window.location.href = "../../Views/Faq/faq.html";
-
             }
 
             function submitticket() {
@@ -76,6 +120,7 @@
             function goToProfile() {
                     window.location.href = "../../Views/Login/User.html";
             }
+
     </script>
 
 </html

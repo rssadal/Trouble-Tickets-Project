@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html>
@@ -13,35 +12,40 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
         <link rel="stylesheet" href="../../Style/tickets.css">
-        <title>FAQ</title>
+        <title>Tickets</title>
     </head>
     
 
     <body>
 
         <header>
-                <div onclick="goBacktoMainPage()" id="logo"><h2>Solve Us</h2></div>
-                <div onclick="goToProfile()" id="icon">
-                    <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
-                </div>
+            <div id="logo" onclick="goBack()">
+                <h2>Solve Us</h2>
+            </div>
+            <div id="icon" onclick="goToProfile()">
+                <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
+            </div>
         </header>
 
         <div class="box">
             <h1>
-                FAQ
+                Marketing Center
             </h1>
+            <h2>
+                Tickets
+            </h2>
             <div id="filtro">
                 <input type="text" placeholder="Name"></input>
                 <button class="confirm" type="submit">Search</button>
             </div>
-        
+            
             <div class="ticket">
-                <div>FAQ ID</div>
-                <div>Title</div>
+                <div>Ticket ID</div>
                 <div>Description</div>
+                <div>Date</div>
             </div>
             
-            <iframe src="faq.php"></iframe>
+            <iframe src="marketing.php"></iframe>
 
         </div>
 
@@ -50,13 +54,15 @@
         </div>
 
         <script>
-                function goBacktoMainPage() {
+
+                function goBack() {
                     window.location.href = "../../Views/Main/Index.html";
                 }
 
                 function goToProfile() {
                     window.location.href = "../../Views/Login/User.html";
                 }
+
         </script>
         
 
