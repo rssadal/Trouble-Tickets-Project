@@ -11,11 +11,11 @@
 
 <div id="list">
     <?php
-    session_start();
-    include_once('connect.php');
+    //session_start();
+    //include_once('connect.php');
     $db = new SQLite3('tickets.db');
-    $id = $_SESSION['id'];
-    echo $id;
+    //$id = $_SESSION['id'];
+    //echo $id;
 
     // Prepare a SELECT statement to retrieve the columns you want to read
     $stmt = $db->prepare('SELECT id, department ,hashtag, date2,description2 ,status2, user_username FROM Ticket');
