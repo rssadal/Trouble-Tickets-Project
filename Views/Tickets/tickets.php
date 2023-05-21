@@ -10,34 +10,39 @@
 </style>
 
 <div id="list">
-    <?php
-
-    $db = new SQLite3('tickets.db');
- 
+    <?php 
     session_start();
-    include_once('connect.php');
+    include_once('../Login/connect.php');
     $currentUsername = $_SESSION['username'];
+
+    global $db;
 
     // Prepare a SELECT statement to retrieve the columns you want to read
     $stmt = $db->prepare('SELECT id, department ,hashtag, date2,description2 ,status2, user_username FROM Ticket');
     $result = $stmt->execute();
+    if (!$result) {
+        echo "Error fetching from db";
+        throw new Exception('Query execution failed');
+    }
 
     $tickets = array();
 
     // Loop through the results and read each row into the $tickets array
-    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $id = $row['id'];
-        $department = $row['department'];
-        $hashtag = $row['hashtag'];
-        $date = $row['date2'];
-        $description = $row['description2'];
-        $status = $row['status2'];
-        $username = $row['user_username'];
+    while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+        foreach ($row as $rowItem){
+            $id = $rowItem['id'];
+            $department = $rowItem['department'];
+            $hashtag = $rowItem['hashtag'];
+            $date = $rowItem['date2'];
+            $description = $rowItem['description2'];
+            $status = $rowItem['status2'];
+            $username = $rowItem['user_username'];
 
-        $tickets[] = array($id, $department, $hashtag, $date, $description, $status, $username);
+            $tickets[] = array($id, $department, $hashtag, $date, $description, $status, $username);
+        }
     }
 
-    $db->close();
+    $db = null;
 
     //Escolhemos qual a informacao queremos no ecrã
     foreach ($tickets as $ticket) {

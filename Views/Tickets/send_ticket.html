@@ -66,6 +66,14 @@
             formData.append('ticketText', ticket_text);
             formData.append('department', department); // Add the department value to formData
             formData.append('HashTag', HashTag);
+
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = String(today.getMonth() + 1).padStart(2, '0');
+            var day = String(today.getDate()).padStart(2, '0');
+            var currentDate = `${year}-${month}-${day}`;
+
+            formData.append('dateString', currentDate);
         
             fetch('submit_ticket.php', {
                 method: 'POST',

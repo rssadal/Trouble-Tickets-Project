@@ -13,7 +13,6 @@
 
     // Authenticate the user and send a response
     //Open the SQLite3 database
-    //$db = new SQLite3('ltwdatabase.db');
 
     // Prepare a SELECT statement to retrieve the column you want to read
     global $db;

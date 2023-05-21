@@ -38,36 +38,38 @@
             <?php
 
                 session_start();
-                include_once('connect.php');
+                include_once('../Login/connect.php');
+                global $db;
+
                 $currentUsername = $_SESSION['username'];
                 echo $currentUsername;
              
                 if(isset($_GET['id'])) {
                     $id = $_GET['id'];
-                    $db = new SQLite3('tickets.db');
                     $stmt = $db->prepare('SELECT id, department ,hashtag, date2, description2, status2, user_username FROM Ticket WHERE id = :id');
-                    $stmt->bindParam(':id', $id, SQLITE3_INTEGER);
+                    $stmt->bindParam(':id', $id);
                     $result = $stmt->execute();
+
+                    if (!$result) {
+                        echo "Error fetching from db";
+                        throw new Exception('Query execution failed');
+                    }
                 
                     $tickets = array();
                 
-                    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                        $id = $row['id'];
-                        $department = $row['department'];
-                        $hashtag = $row['hashtag'];
-                        $date = $row['date2'];
-                        $description = $row['description2'];
-                        $status = $row['status2'];
-                        $username = $row['user_username'];
-                
-                        $tickets[] = array($id, $department, $hashtag, $date, $description, $status, $username);
+                    while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
+                        foreach ($row as $rowItem){
+                            $id = $rowItem['id'];
+                            $department = $rowItem['department'];
+                            $hashtag = $rowItem['hashtag'];
+                            $date = $rowItem['date2'];
+                            $description = $rowItem['description2'];
+                            $status = $rowItem['status2'];
+                            $username = $rowItem['user_username'];
+                    
+                            $tickets[] = array($id, $department, $hashtag, $date, $description, $status, $username);
+                        }
                     }
-
-                   
-                    $countStmt = $db->prepare('SELECT COUNT(*) AS total FROM Ticket');
-                    $countResult = $countStmt->execute();
-                    $totalRows = $countResult->fetchArray(SQLITE3_ASSOC)['total'];
-
                    
                     echo '<div class="ticket-container cdd">';
                     echo '<h2 class="ticket-id">Ticket ID: ' . $id . '</h2>';
@@ -111,66 +113,73 @@
                 }
 
                 //GET NUMBER OF ASSOCIATED ANSWER TO THIS TICKET
-                $query = $db->prepare('
-                SELECT COUNT(*) AS answer_count
-                FROM Ticket_Answer
-                JOIN Answers ON Ticket_Answer.answer_id = Answers.id
-                WHERE Ticket_Answer.ticket_id = :ticket_id
+                $query = $db->prepare('SELECT COUNT(*) AS answer_count
+                    FROM Ticket_Answer
+                    JOIN Answers ON Ticket_Answer.answer_id = Answers.id
+                    WHERE Ticket_Answer.ticket_id = :ticket_id
                 ');
-                $query->bindValue(':ticket_id', $id, SQLITE3_INTEGER);
-                
-          
+                if (!$query) {
+                    echo "Error fetching from db";
+                    throw new Exception('Query execution failed');
+                }
+                $query->bindValue(':ticket_id', $id);
                 $result = $query->execute();
-                $row = $result->fetchArray(SQLITE3_ASSOC);
+
+                if (!$result) {
+                    echo "Error fetching from db";
+                    throw new Exception('Query execution failed');
+                }
+                $answerCount = $query->fetchColumn();;
                 
-                
-                $answerCount = $row['answer_count'];
+                // Retrieve the answer count
                 
             
                 echo "<h2>Talk with one of our Service member</h2>";
                 echo "Ticket with ID " . $id . " is associated with " . $answerCount . " answer(s).";
 
-                $query = $db->prepare('
-                    SELECT Answers.answer, Answers.id, Answer_Worker.username, User2.role2
-                    FROM Ticket
-                    JOIN Ticket_Answer ON Ticket.id = Ticket_Answer.ticket_id
-                    JOIN Answers ON Ticket_Answer.answer_id = Answers.id
-                    JOIN Answer_Worker ON Answers.id = Answer_Worker.answer_id
-                    JOIN User2 ON Answer_Worker.username = User2.username
-                    WHERE Ticket.id = :ticket_id
-                ');
-                $query->bindValue(':ticket_id', $id, SQLITE3_INTEGER);
+        $query = $db->prepare('SELECT Answers.answer, Answers.id, Answer_Worker.username, User2.role2
+            FROM Ticket
+            JOIN Ticket_Answer ON Ticket.id = Ticket_Answer.ticket_id
+            JOIN Answers ON Ticket_Answer.answer_id = Answers.id
+            JOIN Answer_Worker ON Answers.id = Answer_Worker.answer_id
+            JOIN User2 ON Answer_Worker.username = User2.username
+            WHERE Ticket.id = :ticket_id
+        ');
+        $query->bindValue(':ticket_id', $id);
 
-            
-                $result = $query->execute();
+        // Execute the query and fetch the results
+        $result = $query->execute();
+        if (!$result) {
+            echo "Error fetching from db";
+            throw new Exception('Query execution failed');
+        }
 
-                echo '<div class="chat">';
-                while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-            
-            
-                if ($row['role2'] === 'Services') {
+        // Loop through the results and output the response answers with usernames and roles
+        while ($row = $query->fetchALL(PDO::FETCH_ASSOC)) {
+            foreach ($row as $rowItem){
+                if ($rowItem['role2'] === 'Agent') {
                 
                     echo '<div class="ticket-container2 cdd">';
-                    echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
-                    echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
-                    echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
-                    echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
+                    echo '<span class="answer-id">This answer has been given the id ' . $rowItem['id'] . '</span>';
+                    echo '<span class="answer">Answer: ' . $rowItem['answer'] . '</span>';
+                    echo '<span class="username">Answered by: ' . $rowItem['username'] . '</span>';
+                    echo '<span class="role"> with role of ' . $rowItem['role2'] . '</span>';
                     echo '</div>';
                 }
-
+                
                 else{
                     echo '<div class="ticket-container1 cdd">';
-                    echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
-                    echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
-                    echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
-                    echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
+                    echo '<span class="answer-id">This answer has been given the id ' . $rowItem['id'] . '</span>';
+                    echo '<span class="answer">Answer: ' . $rowItem['answer'] . '</span>';
+                    echo '<span class="username">Answered by: ' . $rowItem['username'] . '</span>';
+                    echo '<span class="role"> with role of ' . $rowItem['role2'] . '</span>';
                     echo '</div>';
                 }
-            
             }
-            echo '</div>';
-            
-            $db->close();
+        }
+        echo '</div>';
+        // Close the database connection
+        $db = null;
 
             echo "<h2> Answer to this Ticket(only Ticket owner or Company worker might post here) </h2>";
             // input box and button

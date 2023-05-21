@@ -70,6 +70,32 @@ CREATE TABLE Faq_department (
     FOREIGN KEY (faq_id) REFERENCES Faq(id)
 );
 
+-- Table: Answers
+DROP TABLE IF EXISTS Answers;
+CREATE TABLE Answers (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    answer     TEXT    NOT NULL
+   
+);
+
+-- Table: Ticket_Answer
+DROP TABLE IF EXISTS Ticket_Answer;
+CREATE TABLE Ticket_Answer (
+    ticket_id   INTEGER,
+    answer_id   INTEGER,
+    FOREIGN KEY (ticket_id) REFERENCES Ticket(id),
+    FOREIGN KEY (answer_id) REFERENCES Answers(id)
+);
+
+-- Table: Answer_Worker
+DROP TABLE IF EXISTS Answer_Worker;
+CREATE TABLE Answer_Worker (
+    answer_id   INTEGER,
+    username    TEXT,  
+    FOREIGN KEY (answer_id) REFERENCES Answers(id),
+    FOREIGN KEY (username) REFERENCES User2(username)
+);
+
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = ON;
 
@@ -77,10 +103,12 @@ PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
 -- Insert data into User2 table
+INSERT INTO User2 VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
+INSERT INTO User2 VALUES ('Pedroxx', 'pedro albranaz', '12345', 'pedroxx@gmail.com', 'cliente');
+INSERT INTO User2 VALUES ('franca123', 'francisco franco', 'ilove123', 'francisco.amaizade@hotmail.com', 'cliente');
+INSERT INTO User2 VALUES ('user', 'eu', '123', 'francisco.amaizade@hotmail.com', 'cliente');
+INSERT INTO User2 VALUES ('novo', 'eusounovo', '123', 'novo@hotmail.com', 'cliente');
 INSERT INTO User2 VALUES ('maria69', 'maria69', '69', 'maria@hotmail.com', 'Services');
-INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
-INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('Pedroxx', 'pedro albranaz', '12345', 'pedroxx@gmail.com', 'cliente');
-INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('franca123', 'francisco franco', 'ilove123', 'francisco.amaizade@hotmail.com', 'cliente');
 
 -- INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
 -- INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('Pedroxx', 'diogo camara', 'Adivinha', 'pedroxx@gmail.com', 'cliente');
@@ -91,14 +119,17 @@ INSERT INTO Department (nome) VALUES ("information");
 
 -- INSERT INTO UserDepartment (user_username, department_id) VALUES ("diogo13350", "marketing");
 
--- INSERT INTO Ticket (department, hashtag, title, date2, description2, status2, user_username) VALUES ('tech help', '#', 'client waiting for tech help', '05-05-2023', "",'waiting','diogo13350');
--- INSERT INTO Ticket (department, hashtag, title, date2, description2, status2, user_username) VALUES ('tech help', '#', 'client waiting for tech help', '06-05-2023', "", 'waiting','Pedroxx');
--- INSERT INTO Ticket (department, hashtag, title, date2, description2, status2, user_username) VALUES ('marketing', '#', 'client waiting for meeting with business team', '06-05-2023', "", 'waiting','Pedroxx');
--- INSERT INTO Ticket (department, hashtag, title, date2, description2, status2, user_username) VALUES ('information', '#', 'client requires information about a product', '06-05-2023', "", 'waiting','franca123');
+INSERT INTO Ticket (department, hashtag, date2, title, status2, user_username, description2) VALUES ('Marketing', '#', '04-05-2023', 'client waiting for meeting with business team', 'waiting','diogo13350', "");
+INSERT INTO Ticket (department, hashtag, date2, title, status2, user_username, description2) VALUES ('Tech Help', '#', '05-05-2023', 'client waiting for tech help', 'waiting','diogo13350', "");
+INSERT INTO Ticket (department, hashtag, date2, title, status2, user_username, description2) VALUES ('Tech Help', '#', '06-05-2023', 'client waiting for tech help', 'waiting','Pedroxx', "");
+INSERT INTO Ticket (department, hashtag, date2, title, status2, user_username, description2) VALUES ('Marketing', '#', '02-05-2023', 'client waiting for meeting with business team', 'waiting','Pedroxx', "");
+INSERT INTO Ticket (department, hashtag, date2, title, status2, user_username, description2) VALUES ('Information', '#', '04-05-2023', 'client requires information about a product', 'waiting','franca123', "");
 
--- INSERT INTO AgentTicket (user_username, ticket_id) VALUES ("diogo13350", 0);
--- INSERT INTO AgentTicket (user_username, ticket_id) VALUES ("diogo13350", 1);
--- INSERT INTO AgentTicket (user_username, ticket_id) VALUES ("Pedroxx", 3);
+INSERT INTO Answers (answer) VALUES ('This is the answer to the first question.');
+INSERT INTO Answers (answer) VALUES ('Here is the answer to the second question.');
+INSERT INTO Answers (answer) VALUES ('The answer to the third question is as follows.');
+INSERT INTO Answers (answer) VALUES ('For the fourth question, the answer is provided here.');
+INSERT INTO Answers (answer) VALUES ('Finally, here is the answer to the fifth question.');
 
 INSERT INTO Faq VALUES (0,'what departments do you have?','What departments do you have and which one should i submit my request?','04-05-2023');
 INSERT INTO Faq VALUES (1,'Submit question to department','Can i submit a question to the deparment?','02-09-2023');

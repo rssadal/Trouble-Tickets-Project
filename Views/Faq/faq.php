@@ -3,9 +3,7 @@
         session_start();
         include_once('../Login/connect.php');
 
-        // $db = new SQLite3('database.db');
-
-        global $db;
+    global $db;
 
         // Prepare a SELECT statement to retrieve the columns you want to read
         $stmt = $db->prepare('SELECT *  FROM Faq');
