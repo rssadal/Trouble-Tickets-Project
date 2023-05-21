@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../../Style/master.css">
+        <link rel="stylesheet" href="../../Style/tickets.css">
+        <script src="../../Scripts/master.js"></script>
+        <link type="image/png" sizes="32x32" rel="icon" href="../../Images/icon.png">
+        <title>Tickets</title>
+    </head>
+    
+
+    <body>
+
+        <header>
+            <div id="logo" onclick="mainLogin()">
+                <h2>Solve Us</h2>
+            </div>
+            <div id="icon" onclick="goToProfile()">
+                <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
+            </div>
+        </header>
+
+        <div id="container" class="box">
+            <h1>
+                Update Profile
+            </h1>
+            <h2>
+                Users
+            </h2>
+            
+            <iframe id="frame" src="tools.php"></iframe>
+
+        </div>
+
+        <footer>
+            <div class="footer">
+                University of Porto
+            </div>
+        </footer>
+
+        <script>
+            document.getElementById("frame").onload = function() {
+                // Access the contentWindow of the iframe
+                var iframeWindow = document.getElementById("frame").contentWindow;
+            
+                // Get the desired div element from the iframe
+                var desiredDiv = iframeWindow.document.getElementById("list");
+            
+                // Append the desired div to your webpage
+                document.getElementById("container").appendChild(desiredDiv);
+            };
+        </script>
+        
+    </body>
+
+</html
