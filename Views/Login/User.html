@@ -24,6 +24,7 @@
                 <div>
                     <button class="basic" onclick="edit()">Edit</button>
                     <button class="basic" onclick="logout()">Logout</button>
+                    <button class="basic" onclick="assignedToMe()">Assigned to me</button>
                 </div>                
             </div>
         </div>
@@ -57,6 +58,9 @@
         }
         function logout() {
             window.location.href = "logout.php";
+        }
+        function assignedToMe() {
+            window.location.href = "../Tickets/get_agent_tickets.php";
         }
     </script>
 </html>
