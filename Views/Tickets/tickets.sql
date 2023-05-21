@@ -1,4 +1,3 @@
-
 CREATE TABLE User2 (
     username    TEXT    PRIMARY KEY,
     nome        TEXT    NOT NULL,
@@ -68,7 +67,6 @@ INSERT INTO Answer_Worker VALUES  (1, 'maria69');
 INSERT INTO Answer_Worker VALUES  (2, 'maria69');
 INSERT INTO Answer_Worker VALUES  (3, 'maria69');
 INSERT INTO Answer_Worker VALUES  (4, 'maria69');
-
 
 
 

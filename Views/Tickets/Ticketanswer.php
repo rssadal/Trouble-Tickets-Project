@@ -121,7 +121,7 @@
                 $answerCount = $row['answer_count'];
                 
         // Output the answer count
-        echo "<h2>Ticket answers</h2>";
+        echo "<h2>Talk with one of our Service member</h2>";
         echo "Ticket with ID " . $id . " is associated with " . $answerCount . " answer(s).";
 
         $query = $db->prepare('
@@ -139,6 +139,7 @@
         $result = $query->execute();
 
         // Loop through the results and output the response answers with usernames and roles
+        echo '<div class="chat">';
         while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     
           
@@ -162,6 +163,8 @@
             }
          
         }
+        echo '</div>';
+        
 
         // Close the database connection
         $db->close();
@@ -210,9 +213,8 @@
                     console.error('Error:', error);
                 });
 
-                //location.reload();
-                
-                
+                location.reload();
+                     
             }
 
             
