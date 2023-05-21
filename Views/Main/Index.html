@@ -10,6 +10,8 @@
     </head>
     
     <body>
+       
+
 
         <header>
             <div id="logo"><h2>Solve Us</h2></div>
@@ -33,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="line2">
+            <div id="line2" class="line2">
 
 
                 <div class="square2" onclick="ti_tickets()">
@@ -54,40 +56,45 @@
 
         </div>
 
-        <footer>
-            <div class="footer">
-                University of Porto
-            </div>
-        </footer>
+        <div class="footer">
+            University of Porto
+        </div>
     
     </body>
 
     <script>
 
-            var userRole = "client";
 
-            function checkUserRole(){  
-
-                if (userRole === "client") {
-
-                    //var squares2 = document.getElementsByClassName("square2");
-
-                    console.log("nvdzkjzvnz");
-                   // for (var j = 0; j < squares2.length; j++) {
-                   //     squares2[j].removeAttribute("onclick");
-                   // }
-
-                    
-                    
+            function checkUserRole(role){  
+                console.log("ESTOU AQUI");
+                role = role.replace(/\n/g, "");
+                console.log("ESTOU AQUI2");
+                
+                if (role.toString() === 'cliente') {
+                    console.log("entrei no IF")
+                    document.getElementById("line2").style.display = "none";
                 }
 
             }
 
-            // Call the checkUserRole function when the page loads
             window.onload = function() {
-                checkUserRole();
-            };
 
+            fetch('retrieve_user.php')
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('Request failed. Returned status of ' + response.status);
+                    }
+                })
+                .then(data => {
+                    //console.log(data); 
+                    checkUserRole(data); // Move the function call here
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            };
 
 
             function squareClicked() {
@@ -123,3 +130,4 @@
     </script>
 
 </html
+

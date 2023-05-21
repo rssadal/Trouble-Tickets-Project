@@ -31,7 +31,13 @@
             </div>
     
             <div>
+                <h3>What is your problem?</h3>
                 <textarea rows="4" cols="50" type="text" id="usernameInput"></textarea>
+            </div>
+
+            <div>
+                <h3>Please add a Hastag to your ticket(include #):</h3>
+                <textarea rows="1" cols="30" type="text" id="TicketHashtag"></textarea>
             </div>
     
             <div>
@@ -51,12 +57,17 @@
         function Send() {
             var ticket_text = document.getElementById("usernameInput").value;
             var department = document.getElementById("department").value;
+            var HashTag = document.getElementById("TicketHashtag").value;
+            console.log(HashTag);
+
+       
         
             var formData = new FormData();
             formData.append('ticketText', ticket_text);
             formData.append('department', department); // Add the department value to formData
+            formData.append('HashTag', HashTag);
         
-            fetch('your_php_script.php', {
+            fetch('submit_ticket.php', {
                 method: 'POST',
                 body: formData
             })

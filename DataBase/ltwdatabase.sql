@@ -77,6 +77,7 @@ PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
 -- Insert data into User2 table
+INSERT INTO User2 VALUES ('maria69', 'maria69', '69', 'maria@hotmail.com', 'Services');
 INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
 INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('Pedroxx', 'pedro albranaz', '12345', 'pedroxx@gmail.com', 'cliente');
 INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('franca123', 'francisco franco', 'ilove123', 'francisco.amaizade@hotmail.com', 'cliente');

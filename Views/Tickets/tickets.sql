@@ -1,4 +1,3 @@
-
 CREATE TABLE User2 (
     username    TEXT    PRIMARY KEY,
     nome        TEXT    NOT NULL,
@@ -44,6 +43,7 @@ INSERT INTO User2 VALUES ('franca123', 'francisco franco', 'ilove123', 'francisc
 INSERT INTO User2 VALUES ('user', 'eu', '123', 'francisco.amaizade@hotmail.com', 'cliente');
 INSERT INTO User2 VALUES ('novo', 'eusounovo', '123', 'novo@hotmail.com', 'cliente');
 INSERT INTO User2 VALUES ('maria69', 'maria69', '69', 'maria@hotmail.com', 'Services');
+INSERT INTO User2 VALUES ('soueu69', 'soueu69', 'soueu69', 'soueu69@hotmail.com', 'Services');
 
 INSERT INTO Ticket VALUES (0, 'Marketing', '#', '04-05-2023', 'client waiting for meeting with business team', 'waiting','diogo13350');
 INSERT INTO Ticket VALUES (1, 'Tech Help', '#', '05-05-2023', 'client waiting for tech help', 'waiting','diogo13350');
@@ -68,7 +68,6 @@ INSERT INTO Answer_Worker VALUES  (1, 'maria69');
 INSERT INTO Answer_Worker VALUES  (2, 'maria69');
 INSERT INTO Answer_Worker VALUES  (3, 'maria69');
 INSERT INTO Answer_Worker VALUES  (4, 'maria69');
-
 
 
 

@@ -34,7 +34,9 @@
             <h2>
                 Current Ticket
             </h2>
+            
             <?php
+
                 session_start();
                 include_once('connect.php');
                 $currentUsername = $_SESSION['username'];
@@ -61,7 +63,7 @@
                         $tickets[] = array($id, $department, $hashtag, $date, $description, $status, $username);
                     }
 
-                    // Count the total number of rows in the ticket table
+                   
                     $countStmt = $db->prepare('SELECT COUNT(*) AS total FROM Ticket');
                     $countResult = $countStmt->execute();
                     $totalRows = $countResult->fetchArray(SQLITE3_ASSOC)['total'];
@@ -88,16 +90,20 @@
                     echo '<option value="Tech Help">Tech Help</option>';
                     echo '<option value="Information">Information</option>';
                     echo '</select>';
+
                 
+                
+                    //TICKET INFORMATION
                     echo ' | Submitted ' . $date . '</h3>';
                     echo '<p class="ticket-description">' . $description . '</p>';
                     echo '<p>Ticket submited by: ' . $username . '</p>';
+
+
+                    // new hashtag
+                    echo '<p> Ticket HashTag: ' . $hashtag . '</p>';
+                    echo '<button id="new_tag" class="new_tag" onclick="newtag(' . $id . ')">Edit HashTag</button>';
+                
                     echo '</div>';
-
-        
-
-                   
-
                 } 
                 
                 else {
@@ -113,72 +119,101 @@
                 ');
                 $query->bindValue(':ticket_id', $id, SQLITE3_INTEGER);
                 
-                // Execute the query and fetch the result
+          
                 $result = $query->execute();
                 $row = $result->fetchArray(SQLITE3_ASSOC);
                 
-                // Retrieve the answer count
+                
                 $answerCount = $row['answer_count'];
                 
-        // Output the answer count
-        echo "<h2>Ticket answers</h2>";
-        echo "Ticket with ID " . $id . " is associated with " . $answerCount . " answer(s).";
+            
+                echo "<h2>Talk with one of our Service member</h2>";
+                echo "Ticket with ID " . $id . " is associated with " . $answerCount . " answer(s).";
 
-        $query = $db->prepare('
-            SELECT Answers.answer, Answers.id, Answer_Worker.username, User2.role2
-            FROM Ticket
-            JOIN Ticket_Answer ON Ticket.id = Ticket_Answer.ticket_id
-            JOIN Answers ON Ticket_Answer.answer_id = Answers.id
-            JOIN Answer_Worker ON Answers.id = Answer_Worker.answer_id
-            JOIN User2 ON Answer_Worker.username = User2.username
-            WHERE Ticket.id = :ticket_id
-        ');
-        $query->bindValue(':ticket_id', $id, SQLITE3_INTEGER);
+                $query = $db->prepare('
+                    SELECT Answers.answer, Answers.id, Answer_Worker.username, User2.role2
+                    FROM Ticket
+                    JOIN Ticket_Answer ON Ticket.id = Ticket_Answer.ticket_id
+                    JOIN Answers ON Ticket_Answer.answer_id = Answers.id
+                    JOIN Answer_Worker ON Answers.id = Answer_Worker.answer_id
+                    JOIN User2 ON Answer_Worker.username = User2.username
+                    WHERE Ticket.id = :ticket_id
+                ');
+                $query->bindValue(':ticket_id', $id, SQLITE3_INTEGER);
 
-        // Execute the query and fetch the results
-        $result = $query->execute();
+            
+                $result = $query->execute();
 
-        // Loop through the results and output the response answers with usernames and roles
-        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-    
-          
-            if ($row['role2'] === 'Services') {
-               
-                echo '<div class="ticket-container2 cdd">';
-                echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
-                echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
-                echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
-                echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
-                echo '</div>';
+                echo '<div class="chat">';
+                while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+            
+            
+                if ($row['role2'] === 'Services') {
+                
+                    echo '<div class="ticket-container2 cdd">';
+                    echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
+                    echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
+                    echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
+                    echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
+                    echo '</div>';
+                }
+
+                else{
+                    echo '<div class="ticket-container1 cdd">';
+                    echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
+                    echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
+                    echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
+                    echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
+                    echo '</div>';
+                }
+            
             }
+            echo '</div>';
+            
+            $db->close();
 
-            else{
-                echo '<div class="ticket-container1 cdd">';
-                echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
-                echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
-                echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
-                echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
-                echo '</div>';
-            }
-         
-        }
-
-        // Close the database connection
-        $db->close();
-
-        echo "<h2> Answer to this Ticket(only Ticket owner or Company worker might post here) </h2>";
-        // Message input box and button
-        echo '<div class="message-box">';
-        echo '<textarea id="message-input" class="message-input" placeholder="Write your message here" style="width: 600px; height: 100px;"></textarea>';
-        echo '<button id="send-button" class="send-button" onclick="sendMessage(' . $id . ')">Send</button>';
-        echo '</div>';
+            echo "<h2> Answer to this Ticket(only Ticket owner or Company worker might post here) </h2>";
+            // input box and button
+            echo '<div class="message-box">';
+            echo '<textarea id="message-input" class="message-input" placeholder="Write your message here" style="width: 600px; height: 100px;"></textarea>';
+            echo '<button id="send-button" class="send-button" onclick="sendMessage(' . $id . ')">Send</button>';
+            echo '</div>';
 
 
-        ?>
-           
+        ?>           
         <script>
+
             function goBack() {
                 window.location.href = "../../Views/Login/login.html";
+            }
+
+            function newtag(ticketId) {
+                var userInput = prompt("Enter new hashtag:");
+                if (userInput !== null) { // Check OK or Cancel
+                    console.log(userInput + "estou aqui");
+                }
+                console.log(ticketId);
+                console.log("change hashtag");
+                var formData = new FormData();
+                formData.append('userInput', userInput);
+                formData.append('ticketId', ticketId);
+
+                
+                fetch('change_hashtag.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    console.log('Response:', data);
+                    location.reload();
+             
+                })
+                .catch(error => {
+                  
+                    console.error('Error:', error);
+                });
+
             }
 
             function sendMessage(ticketId){
@@ -191,45 +226,36 @@
 
                 var formData = new FormData();
                 formData.append('ticketId', ticketId);
-                formData.append('messageinput', messageinput); // Add the department value to formData
+                formData.append('messageinput', messageinput); 
 
-                
             
                 fetch('add_answer_to_ticket.php', {
                     method: 'POST',
                     body: formData
                 })
-                .then(response => response.text()) // Extract the response text
+                .then(response => response.text())
                 .then(data => {
-                    // Handle the response text from the PHP script
                     console.log('Response:', data);
-                    // You can perform further actions based on the response text
+             
                 })
                 .catch(error => {
-                    // Handle any errors that occurred during the request
+                  
                     console.error('Error:', error);
                 });
 
-                //location.reload();
-                
-                
+                location.reload();
+                     
             }
 
             
-
-            // Get a reference to the dropdown element
+            //Change the status of the ticket
             var statusDropdown = document.getElementById("status-dropdown");
-            // Attach an event listener for the change event
             statusDropdown.addEventListener("change", function() {
                 // Get the selected status
                 var selectedStatus = statusDropdown.value;
-
                 // Get the current ticket ID from PHP code
                 var currentTicketId = <?php echo $id; ?>;
-
-                // Send the updated status to the server
                 updateTicketStatus(currentTicketId,selectedStatus);
-                
             });
 
 
@@ -237,13 +263,8 @@
             //Change the department the tickets belongs
             var departmentDropdown = document.getElementById("department-dropdown");
             departmentDropdown.addEventListener("change", function() {
-                // Get the selected department
                 var selectedDepartment = departmentDropdown.value;
-
-                // Get the current ticket ID from PHP code and assign it to the JavaScript variable
                 var currentTicketId = <?php echo $id; ?>;
-
-                // Send the updated department to the server
                 updateTicketDepartment(currentTicketId, selectedDepartment);
             });
 
@@ -251,7 +272,6 @@
                 console.log("Entered the function to update the department");
                 console.log(ticketId);
                 console.log(newDepartment);
-
                 var xhr = new XMLHttpRequest();
 
                 xhr.open("POST", "update_ticket_department.php", true);
@@ -259,46 +279,30 @@
 
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        // Request successful, do something with the response if needed
                         console.log(xhr.responseText);
                     }
                 };
 
-                // Prepare the data to be sent
+              
                 var data = "ticketId=" + encodeURIComponent(ticketId) + "&newdepartment=" + encodeURIComponent(newDepartment);
-
-                // Send the request
                 xhr.send(data);
             }
-
-            
-            
 
             function updateTicketStatus(ticketId,newStatus) {
                 console.log("entrei na funcao de dar update ao status")
                 var xhr = new XMLHttpRequest();
-
                 xhr.open("POST", "update_ticket_status.php", true);
-
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        // Request successful, do something with the response if needed
                         console.log(xhr.responseText);
                     }
                 };
 
-                // Prepare the data to be sent
                 var data = "ticketId=" + encodeURIComponent(ticketId) + "&newStatus=" + encodeURIComponent(newStatus);
-
-                // Send the request
                 xhr.send(data);
    
             }
-
-          
-
 
         </script>
 
