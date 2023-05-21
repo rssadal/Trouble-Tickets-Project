@@ -86,7 +86,7 @@ CREATE TABLE Ticket_Answer (
     answer_id   INTEGER,
     FOREIGN KEY (ticket_id) REFERENCES Ticket(id),
     FOREIGN KEY (answer_id) REFERENCES Answers(id)
-);
+); 
 
 -- Table: Answer_Worker
 DROP TABLE IF EXISTS Answer_Worker;

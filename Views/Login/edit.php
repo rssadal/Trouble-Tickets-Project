@@ -7,7 +7,6 @@
   $name = $_POST['name'];
   $email = $_POST['email'];
   $password = $_POST['password'];
-  $role = $_POST['role'];
 
   // Open the SQLite3 database  
 
@@ -15,7 +14,7 @@
 
   try {
     global $db;
-    $stmt = $db->prepare('SELECT nome, email, role2 FROM User2 WHERE username != :username;');
+    $stmt = $db->prepare('SELECT nome, email, role2, username FROM User2 WHERE username != :username;');
     $stmt->bindParam(':username', $currentUsername);
     $result = $stmt->execute(); 
 
@@ -46,21 +45,22 @@
    
 
   // Update the user's information in the database
-  $stmt = $db->prepare("UPDATE User2 SET role2 = :role2, username = :username, password2 = :password, nome = :name, email = :email WHERE username = :currentUsername");
+  $stmt = $db->prepare("UPDATE User2 SET username = :username, password2 = :password, nome = :name, email = :email WHERE username = :currentUsername");
   $stmt->bindValue(':username', $username);
   $stmt->bindValue(':password', $password);
   $stmt->bindValue(':name', $name);
   $stmt->bindValue(':email', $email);
-  $stmt->bindValue(':role2', $role);
   $stmt->bindValue(':currentUsername', $currentUsername);
   $result = $stmt->execute();
 
   if ($result) {
       echo "Profile updated successfully";
   } else {
-      echo "Error updating profile";
-      throw new Exception('Query execution failed');
+    $errorInfo = $stmt->errorInfo();
+    echo "Query execution failed: " . $errorInfo[2];
   }
+
+  $_SESSION['username'] = $username;
 
   // Close the database connection
   $db = null;

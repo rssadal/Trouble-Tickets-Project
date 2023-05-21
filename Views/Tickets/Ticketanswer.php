@@ -121,8 +121,8 @@
                     WHERE Ticket_Answer.ticket_id = :ticket_id
                 ');
                 if (!$query) {
-                    echo "Error fetching from db";
-                    throw new Exception('Query execution failed');
+                    $errorInfo = $stmt->errorInfo();
+                    echo "Query execution failed: " . $errorInfo[2];
                 }
                 $query->bindValue(':ticket_id', $id);
                 $result = $query->execute();
