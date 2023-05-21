@@ -41,6 +41,7 @@
 
     //Escolhemos qual a informacao queremos no ecrã
     foreach ($tickets as $ticket) {
+        if($currentUsername == $ticket[6]){
         ?>
                     <div onclick="openNewPage('Ticketanswer.php?id=<?php echo $ticket[0]; ?>')" class="cardBox">
                         <div class="card">
@@ -55,5 +56,6 @@
                     </div>
         <?php
     }
+}
     ?>
 </div>
