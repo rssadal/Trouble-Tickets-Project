@@ -25,6 +25,7 @@
                     <button class="basic" onclick="edit()">Edit</button>
                     <button class="basic" onclick="logout()">Logout</button>
                     <button class="basic" onclick="assignedToMe()">Assigned to me</button>
+                    <button class="basic" id="tools" style="display: none;" onclick="openTools()">Tools</button>
                 </div>                
             </div>
         </div>
@@ -40,11 +41,14 @@
                 var username = document.getElementById('username');
                 var email = document.getElementById('email');
                 var role = document.getElementById('role');
+                if(data.split(',')[3] == "Services" ){
+                    var tools= document.getElementById('tools');
+                    tools.style.display = ""
+                }
                 label.innerHTML = data.split(',')[0];
                 username.innerHTML = data.split(',')[1];
                 email.innerHTML = data.split(',')[2];
                 role.innerHTML = data.split(',')[3];
-                console.log(data)
             })
             .catch(error => {
                 // Handle any errors that occurred during the request
@@ -62,6 +66,9 @@
         }
         function assignedToMe() {
             window.location.href = "../Tickets/get_agent_tickets.php";
+        }
+        function openTools() {
+            window.location.href = "../../Views/Tools/users.html";
         }
     </script>
 

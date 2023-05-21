@@ -4,7 +4,7 @@
     --font_padrão: "Abrashe";
 }
 
-h1,h2,h3,p,span{
+*{
     font-family: var(--font_logo);
 }
 
