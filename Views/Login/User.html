@@ -4,14 +4,19 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
         <link rel="stylesheet" href="../../Style/user.css">
+        <script src="../../Scripts/master.js"></script>
         <link type="image/png" sizes="32x32" rel="icon" href="../../Images/icon.png">
         <title>Login</title>
     </head>
     
     <body onload="loadData()">
-        <div onclick="goBacktoMainPage()" id="logo">
-            <h2>Solve Us</h2>
-        </div>
+        <header>
+            <div onclick="goBacktoMainPage()" id="logo">
+                <h2>Solve Us</h2>
+            </div>
+            
+        </header>
+        
 
         <div class="box">
             <h1><label id="name"></label></h1>
@@ -24,11 +29,16 @@
                 <div>
                     <button class="basic" onclick="edit()">Edit</button>
                     <button class="basic" onclick="logout()">Logout</button>
-                    <button class="basic" onclick="assignedToMe()">Assigned to me</button>
                     <button class="basic" id="tools" style="display: none;" onclick="openTools()">Tools</button>
                 </div>                
             </div>
         </div>
+
+        <footer>
+            <div class="footer">
+                University of Porto
+            </div>
+        </footer>
     </body>
 
     <script>

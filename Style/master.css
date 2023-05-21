@@ -1,11 +1,12 @@
-:root {
-    --cor_primaria: #ecececfa;
-    --font_logo: "Abrashe";
-    --font_padrão: "Abrashe";
-}
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
 
+:root {
+  --cor_primaria: #ecececfa;
+  --font_logo: "Abrashe", sans-serif;
+  --font_padrão: "Oswald", sans-serif;
+}
 *{
-    font-family: var(--font_logo);
+    font-family : var(--font_padrão)!important;
 }
 
 body{
@@ -34,7 +35,7 @@ body{
 }
 
 #logo h2{
-    font-family: var(--font_logo);
+    font-family: var(--font_logo)!important;
     margin-top: 0px;
     padding: 0px;
     cursor: pointer;
@@ -95,7 +96,7 @@ header {
 
 .footer {
   color: rgb(0, 0, 0);
-  font-family: var(--font_logo);
+  font-family: var(--font_logo)!important;
   padding-top: 2em;
   padding-bottom: 1em;
   text-align: center;
