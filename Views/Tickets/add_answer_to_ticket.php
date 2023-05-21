@@ -5,9 +5,11 @@ $ticketId = $_POST['ticketId'];
 $messageinput = $_POST['messageinput'];
 
 session_start();
-$id = $_SESSION['id'];
+include_once('connect.php');
+$currentUsername = $_SESSION['username'];
 
-$response = 'USER LOGGED IN WITH ID: ' . $id . ' . ' ;
+
+$response = 'USER LOGGED IN WITH USERNAME: ' . $currentUsername . ' . ' ;
 echo $response;
 
 $db = new SQLite3('tickets.db');
@@ -31,7 +33,7 @@ else {
 
     if ($insertResult === false) {
         // Display the error message
-        echo "Error executing query: " . $db->lastErrorMsg();
+        echo "Error executing query1 " . $db->lastErrorMsg();
     }
     else  {
         // Insert a new row into the "Ticket_Answer" table
@@ -40,10 +42,19 @@ else {
 
         if ($ticketAnswerResult === false) {
             // Display the error message
-            echo "Error executing query: " . $db->lastErrorMsg();
+            echo "Error executing query2: " . $db->lastErrorMsg();
         } else {
-            // Return the answer count as the response
-            echo "ADICIONEI RESPOSTA A ESTE TICKET";
+            // Insert a new row into the "Answer_Worker" table
+            $answerWorkerQuery = "INSERT INTO Answer_Worker (answer_id, username) VALUES ($answerCount, '$currentUsername')";
+            $answerWorkerResult = $db->exec($answerWorkerQuery);
+
+            if ($answerWorkerResult === false) {
+                // Display the error message
+                echo "Error executing query3: " . $db->lastErrorMsg();
+            } else {
+                // Return the answer count as the response
+                echo "ADICIONEI RESPOSTA A ESTE TICKET";
+            }
         }
     }
 }
