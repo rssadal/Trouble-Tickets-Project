@@ -159,7 +159,7 @@
         // Loop through the results and output the response answers with usernames and roles
         while ($row = $query->fetchALL(PDO::FETCH_ASSOC)) {
             foreach ($row as $rowItem){
-                if ($rowItem['role2'] === 'Agent') {
+                if ($rowItem['role2'] === 'agent') {
                 
                     echo '<div class="ticket-container2 cdd">';
                     echo '<div>';
