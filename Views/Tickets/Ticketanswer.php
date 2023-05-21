@@ -24,9 +24,10 @@
             <div id="icon">
                     <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
             </div>
-        
         </header>
+        <div id="container" class="box">
 
+        
             <h1>
                 Ticket Solver
             </h1>
@@ -40,7 +41,6 @@
                 session_start();
                 include_once('connect.php');
                 $currentUsername = $_SESSION['username'];
-                echo $currentUsername;
              
                 if(isset($_GET['id'])) {
                     $id = $_GET['id'];
@@ -80,8 +80,9 @@
                     echo '<option value="In Progress">In Progress</option>';
                     echo '<option value="Resolved">Resolved</option>';
                     echo '</select>';
-                
-                    echo ' | Department:';
+                    echo '</h3>';
+                    echo '<h3 class="ticket-status-date">';
+                    echo ' Department:';
                 
                     // Dropdown for department
                     echo '<select id="department-dropdown" class="department-dropdown">';
@@ -94,14 +95,13 @@
                 
                 
                     //TICKET INFORMATION
-                    echo ' | Submitted ' . $date . '</h3>';
+                    echo '</h3>';
                     echo '<p class="ticket-description">' . $description . '</p>';
-                    echo '<p>Ticket submited by: ' . $username . '</p>';
-
+                    echo '<p>Submited by: ' . $username . ' in: ' . $date . '</p>';
 
                     // new hashtag
                     echo '<p> Ticket HashTag: ' . $hashtag . '</p>';
-                    echo '<button id="new_tag" class="new_tag" onclick="newtag(' . $id . ')">Edit HashTag</button>';
+                    echo '<button id="new_tag" class="new_tag basic" onclick="newtag(' . $id . ')">Edit HashTag</button>';
                 
                     echo '</div>';
                 } 
@@ -125,11 +125,10 @@
                 
                 
                 $answerCount = $row['answer_count'];
-                
-            
+                echo "<div>";
                 echo "<h2>Talk with one of our Service member</h2>";
-                echo "Ticket with ID " . $id . " is associated with " . $answerCount . " answer(s).";
-
+                echo "<p>Ticket with ID " . $id . " is associated with " . $answerCount . " answer(s).</p>";
+                echo "</div>";
                 $query = $db->prepare('
                     SELECT Answers.answer, Answers.id, Answer_Worker.username, User2.role2
                     FROM Ticket
@@ -151,19 +150,35 @@
                 if ($row['role2'] === 'Services') {
                 
                     echo '<div class="ticket-container2 cdd">';
+                    echo '<div>';
                     echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
+                    echo '</div>';
                     echo '</div>';
                 }
 
                 else{
                     echo '<div class="ticket-container1 cdd">';
+                    echo '<div>';
                     echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
+                    echo '</div>';
                     echo '</div>';
                 }
             
@@ -175,12 +190,13 @@
             echo "<h2> Answer to this Ticket(only Ticket owner or Company worker might post here) </h2>";
             // input box and button
             echo '<div class="message-box">';
-            echo '<textarea id="message-input" class="message-input" placeholder="Write your message here" style="width: 600px; height: 100px;"></textarea>';
-            echo '<button id="send-button" class="send-button" onclick="sendMessage(' . $id . ')">Send</button>';
+            echo '<div><textarea id="message-input" rows="4" cols="50" class="message-input" placeholder="Write your message here"></textarea></div>';
+            echo '<div><button id="send-button" class="send-button confirm" onclick="sendMessage(' . $id . ')">Send</button></div>';
             echo '</div>';
 
 
-        ?>           
+        ?>  
+        </div>         
         <script>
 
             function goBack() {
@@ -305,6 +321,13 @@
             }
 
         </script>
+
+        <footer>
+            <div class="footer">
+                University of Porto
+            </div>
+        </footer>
+
 
     </body>
 
