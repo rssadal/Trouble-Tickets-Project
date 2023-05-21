@@ -4,12 +4,10 @@
 
 
 if (isset($_POST['ticketText']) && isset($_POST['department'])) {
-
     session_start();
-    $id = $_SESSION['id'];
-
-    $response = 'USER LOGGED IN WITH ID: ' . $id . ' . ' ;
-    echo $response;
+    include_once('connect.php');
+    $currentUsername = $_SESSION['username'];
+    echo $currentUsername;
 
 
 
@@ -49,7 +47,7 @@ if (isset($_POST['ticketText']) && isset($_POST['department'])) {
     $stmt->bindValue(':date2', $date, SQLITE3_TEXT);
     $stmt->bindValue(':description2', $ticketText, SQLITE3_TEXT);
     $stmt->bindValue(':status2', 'waiting', SQLITE3_TEXT);
-    $stmt->bindValue(':user_username',"default user", SQLITE3_TEXT); // Replace 'your_username' with an actual value
+    $stmt->bindValue(':user_username',$currentUsername, SQLITE3_TEXT); 
     $stmt->execute();
 
     $db->close();

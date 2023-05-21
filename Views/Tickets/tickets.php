@@ -11,11 +11,12 @@
 
 <div id="list">
     <?php
+
+    $db = new SQLite3('tickets.db');
+ 
     session_start();
     include_once('connect.php');
-    $db = new SQLite3('tickets.db');
-    $id = $_SESSION['id'];
-    echo $id;
+    $currentUsername = $_SESSION['username'];
 
     // Prepare a SELECT statement to retrieve the columns you want to read
     $stmt = $db->prepare('SELECT id, department ,hashtag, date2,description2 ,status2, user_username FROM Ticket');
@@ -40,15 +41,17 @@
 
     //Escolhemos qual a informacao queremos no ecrã
     foreach ($tickets as $ticket) {
-        ?>
-        <div class="ticket">
-            <a href="Ticketanswer.php?id=<?php echo $ticket[0]; ?>"  class="ticket" target="_blank">
-                <div>
-                    <?php echo "&nbsp;&nbsp;&nbsp;".$ticket[0] . "&nbsp;&nbsp;&nbsp;" . $ticket[4] . "&nbsp;&nbsp;&nbsp;" .$ticket[3]; ?>
-                </div>
-            </a>
-        </div>
-        <?php
+        if ($ticket[6] === $currentUsername) {
+            ?>
+            <div class="ticket">
+                <a href="Ticketanswer.php?id=<?php echo $ticket[0]; ?>"  class="ticket" target="_blank">
+                    <div>
+                        <?php echo "&nbsp;&nbsp;&nbsp;".$ticket[0] . "&nbsp;&nbsp;&nbsp;" . $ticket[4] . "&nbsp;&nbsp;&nbsp;" .$ticket[3]; ?>
+                    </div>
+                </a>
+            </div>
+            <?php
+        }
     }
     ?>
 </div>

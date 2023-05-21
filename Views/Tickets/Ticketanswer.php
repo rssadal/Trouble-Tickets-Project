@@ -35,6 +35,10 @@
                 Current Ticket
             </h2>
             <?php
+                session_start();
+                include_once('connect.php');
+                $currentUsername = $_SESSION['username'];
+                echo $currentUsername;
              
                 if(isset($_GET['id'])) {
                     $id = $_GET['id'];
@@ -87,7 +91,11 @@
                 
                     echo ' | Submitted ' . $date . '</h3>';
                     echo '<p class="ticket-description">' . $description . '</p>';
+                    echo '<p>Ticket submited by: ' . $username . '</p>';
                     echo '</div>';
+
+        
+
                    
 
                 } 
@@ -112,7 +120,7 @@
                 // Retrieve the answer count
                 $answerCount = $row['answer_count'];
                 
-          // Output the answer count
+        // Output the answer count
         echo "<h2>Ticket answers</h2>";
         echo "Ticket with ID " . $id . " is associated with " . $answerCount . " answer(s).";
 
@@ -132,24 +140,31 @@
 
         // Loop through the results and output the response answers with usernames and roles
         while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-            echo '<div class="ticket-container cdd">';
-            echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
-            echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
-            echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
-            echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
-            echo '</div>';
+    
+          
+            if ($row['role2'] === 'Services') {
+               
+                echo '<div class="ticket-container2 cdd">';
+                echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
+                echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
+                echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
+                echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
+                echo '</div>';
+            }
+
+            else{
+                echo '<div class="ticket-container1 cdd">';
+                echo '<span class="answer-id">This answer has been given the id ' . $row['id'] . '</span>';
+                echo '<span class="answer">Answer: ' . $row['answer'] . '</span>';
+                echo '<span class="username">Answered by: ' . $row['username'] . '</span>';
+                echo '<span class="role"> with role of ' . $row['role2'] . '</span>';
+                echo '</div>';
+            }
+         
         }
 
         // Close the database connection
         $db->close();
-
-
-
-
-
-
-
-  
 
         echo "<h2> Answer to this Ticket(only Ticket owner or Company worker might post here) </h2>";
         // Message input box and button
@@ -159,12 +174,7 @@
         echo '</div>';
 
 
-
- 
-
-
-
-            ?>
+        ?>
            
         <script>
             function goBack() {
