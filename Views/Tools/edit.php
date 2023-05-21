@@ -55,20 +55,20 @@
                 echo '<h3> User Type </h3>';
                 echo '<div class="wrapper">';
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn" value="1"' . ($role2 == "cliente" ? "checked=" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_client" value="1"' . ($role2 == "cliente" ? "checked=" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Client</span>';
                 echo '</div>';
                 echo '</div>';
 
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn" value="2"' . ($role2  == "agent" ? "checked" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_client" value="2"' . ($role2  == "agent" ? "checked" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Agent</span>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn" value="3"' . ($role2  == "admin" ? "checked" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_client" value="3"' . ($role2  == "admin" ? "checked" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Admin</span>';
                 echo '</div>';
@@ -79,26 +79,26 @@
                 echo '<h3> Departament </h3>';
                 echo '<div class="wrapper">';
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn" value="1" ' . ($department_id == 1 ? "checked" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_dp" value="1" ' . ($department_id == 1 ? "checked" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Marketing</span>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn" value="2" ' . ($department_id == 2 ? "checked" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_dp" value="2" ' . ($department_id == 2 ? "checked" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Tech Help</span>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn" value="3"' . ($department_id == 3 ? "checked" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_dp" value="3"' . ($department_id == 3 ? "checked" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Information</span>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
 
-                echo '<button id="send-button" class="basic" onclick="send2(' . $username . $department_id . ')">Send</button>';
+                echo '<button id="send-button" type="button" class="basic" onclick="send2()">Send</button>';
                 
                         
             }
@@ -118,10 +118,8 @@
 
     <script>
 
-        function send2(username ,department_id){
+        function send2(){
             console.log("CLIQUEI NO BOTAO");
-            console.log(username);
-            console.log(department_id);
         }
 
 
