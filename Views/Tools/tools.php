@@ -27,15 +27,24 @@
     foreach ($tickets as $ticket) {
         if ($ticket[1] === 'Tech Help') {
             ?>
-                    <div onclick="openNewPage('Ticketanswer.php?id=<?php echo $ticket[0]; ?>')" class="cardBox">
-                        <div class="card">
-                            <div class="h4"><?php echo $ticket[4]; ?></div>
-                                <div class="content">
-                                    <div class="h3"><?php echo $ticket[5]; ?></div>
-                                    <p><?php echo $ticket[2]; ?></p>
-                                    <p><?php echo $ticket[3]; ?></p>
-                                    
-                                </div>
+                    <div class="wrapper">
+                        <div class="option">
+                            <input class="input" type="radio" name="btn" value="option1" checked="">
+                            <div class="btn">
+                                <span class="span">Marketing</span>
+                            </div>
+                        </div>
+                        <div class="option">
+                            <input class="input" type="radio" name="btn" value="option2">
+                            <div class="btn">
+                                <span class="span">Tech Help</span>
+                            </div>  
+                        </div>
+                        <div class="option">
+                            <input class="input" type="radio" name="btn" value="option3">
+                            <div class="btn">
+                                <span class="span">Information</span>
+                            </div>  
                         </div>
                     </div>
             <?php

@@ -11,11 +11,12 @@
 
 <div id="list">
     <?php
-    //session_start();
-    //include_once('connect.php');
+
     $db = new SQLite3('tickets.db');
-    //$id = $_SESSION['id'];
-    //echo $id;
+ 
+    session_start();
+    include_once('connect.php');
+    $currentUsername = $_SESSION['username'];
 
     // Prepare a SELECT statement to retrieve the columns you want to read
     $stmt = $db->prepare('SELECT id, department ,hashtag, date2,description2 ,status2, user_username FROM Ticket');
@@ -41,13 +42,17 @@
     //Escolhemos qual a informacao queremos no ecrã
     foreach ($tickets as $ticket) {
         ?>
-        <div class="ticket">
-            <a href="Ticketanswer.php?id=<?php echo $ticket[0]; ?>"  class="ticket" target="_blank">
-                <div>
-                    <?php echo "&nbsp;&nbsp;&nbsp;".$ticket[0] . "&nbsp;&nbsp;&nbsp;" . $ticket[4] . "&nbsp;&nbsp;&nbsp;" .$ticket[3]; ?>
-                </div>
-            </a>
-        </div>
+                    <div onclick="openNewPage('Ticketanswer.php?id=<?php echo $ticket[0]; ?>')" class="cardBox">
+                        <div class="card">
+                            <div class="h4"><?php echo $ticket[4]; ?></div>
+                                <div class="content">
+                                    <div class="h3"><?php echo $ticket[5]; ?></div>
+                                    <p><?php echo $ticket[2]; ?></p>
+                                    <p><?php echo $ticket[3]; ?></p>
+                                    
+                                </div>
+                        </div>
+                    </div>
         <?php
     }
     ?>

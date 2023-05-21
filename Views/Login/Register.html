@@ -46,65 +46,71 @@
         </form>
 
 
-
-
-        <script>
-            function goBacktoMainPage() {
-                window.location.href = "../Main/Index.html";
-            }
-
-            function create_acount() {
-                console.log("CREATING ACOUNT");
-                var username = document.getElementById("createusername").value;
-                var password = document.getElementById("createpassword").value
-                var name = document.getElementById("createname").value;
-                var email = document.getElementById("createemail").value;
-
-                if (username === '') {
-                    console.log("Username cannot be empty");
-                    return;
-                }
-
-                if (password === '') {
-                    console.log("Password cannot be empty");
-                    return;
-                }
-
-                if (name === '') {
-                    console.log("Name cannot be empty");
-                    return;
-                }
-
-                if (email === '') {
-                    console.log("Email cannot be empty");
-                    return;
-                }
-
-                // Now you can use the 'username' and 'password' variables to authenticate the user
-                console.log("Username: " + username);
-                console.log("Password: " + password);
-                console.log("email: " + email);
-                console.log("name " + name);
-
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'Register.php');
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        console.log(xhr.responseText);
-                        // Do something with the response
-                        
-                    }
-                    else {
-                        console.log('Request failed.  Returned status of ' + xhr.status);
-                    }
-                };
-                
-                xhr.send('username=' + username + '&password=' + password + '&email=' + email + '&name=' + name);
-     
-  		}
-          
-        </script>
-        
+    
+        <footer>
+            <div class="footer">
+                University of Porto
+            </div>
+        </footer>
     
     </body>
+    
+    <script>
+        function goBacktoMainPage() {
+            window.location.href = "../Main/Index.html";
+        }
+
+        function create_acount() {
+            console.log("CREATING ACOUNT");
+            var username = document.getElementById("createusername").value;
+            var password = document.getElementById("createpassword").value
+            var name = document.getElementById("createname").value;
+            var email = document.getElementById("createemail").value;
+
+            if (username === '') {
+                console.log("Username cannot be empty");
+                return;
+            }
+
+            if (password === '') {
+                console.log("Password cannot be empty");
+                return;
+            }
+
+            if (name === '') {
+                console.log("Name cannot be empty");
+                return;
+            }
+
+            if (email === '') {
+                console.log("Email cannot be empty");
+                return;
+            }
+
+            // Now you can use the 'username' and 'password' variables to authenticate the user
+            console.log("Username: " + username);
+            console.log("Password: " + password);
+            console.log("email: " + email);
+            console.log("name " + name);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'Register.php');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    // Do something with the response
+                    
+                }
+                else {
+                    console.log('Request failed.  Returned status of ' + xhr.status);
+                }
+            };
+            
+            xhr.send('username=' + username + '&password=' + password + '&email=' + email + '&name=' + name);
+ 
+      }
+      
+    </script>
+
+</html

@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 
 <html>
-    <style>
-        iframe {
-            border: none;
-        }
-    </style>
-
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
@@ -20,7 +14,7 @@
     <body>
 
         <header>
-            <div id="logo" onclick="goBack()">
+            <div id="logo" onclick="mainLogin()">
                 <h2>Solve Us</h2>
             </div>
             <div id="icon" onclick="goToProfile()">
@@ -30,41 +24,23 @@
 
         <div id="container" class="box">
             <h1>
-                Tech Help
+                Update Profile
             </h1>
             <h2>
-                Tickets
+                Users
             </h2>
-            <div id="filtro">
-                <input type="text" placeholder="Name"></input>
-                <button class="confirm" type="submit">Search</button>
-            </div>
             
-            <iframe id="frame" src="ti_tickets.php"></iframe>
+            <iframe id="frame" src="tools.php"></iframe>
 
         </div>
-        
+
         <footer>
             <div class="footer">
                 University of Porto
             </div>
         </footer>
 
-    </body>
-
-   
-    
-    <script>
-
-            function goBack() {
-                window.location.href = "../../Views/Main/Index.html";
-            }
-
-            function goToProfile() {
-                window.location.href = "../../Views/Login/User.html";
-            }
-            
-            // Wait for the iframe to load
+        <script>
             document.getElementById("frame").onload = function() {
                 // Access the contentWindow of the iframe
                 var iframeWindow = document.getElementById("frame").contentWindow;
@@ -75,8 +51,8 @@
                 // Append the desired div to your webpage
                 document.getElementById("container").appendChild(desiredDiv);
             };
-            
-
-    </script>
+        </script>
+        
+    </body>
 
 </html

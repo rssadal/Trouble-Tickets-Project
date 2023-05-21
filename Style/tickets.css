@@ -1,12 +1,15 @@
-<<<<<<< HEAD
 #list{
-    display: flex;
-    flex-direction: column;
-    width: 70%;    
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #list > * {
-    margin-bottom: 1%;
+    margin: 1%;
+}
+
+a {
+    text-decoration: none;
 }
 
 #filtro{
@@ -31,20 +34,34 @@
 }
 
 .ticket-container {
-    border: 2px solid black;
-    padding: 10px;
-    background-color: rgb(160, 156, 156);
-    border-radius: 5px;
-  }
-  
-  .ticket-id {
-    color: rgb(0, 0, 0);
-  }
-  
-  .ticket-status-date {
-    color: rgb(0, 0, 0);
+  border: 2px solid black;
+  padding: 10px;
+  background-color: rgb(109, 113, 110);
+  border-radius: 5px;
   }
 
+.ticket-container1 {
+  border: 2px solid black;
+  padding: 10px;
+  background-color: rgb(15, 181, 56);
+  border-radius: 5px;
+  width: 60%;
+  float: left;
+
+  }
+
+.ticket-container2 {
+    border: 2px;
+    padding: 10px;
+    background-color: rgb(161, 9, 9);
+    width: 60%;
+    border-radius: 5px;
+    float: right;
+    margin-left: 38%;
+
+}
+  
+  
   .answer-id {
     border-bottom: 1px solid black;
     display: block;
