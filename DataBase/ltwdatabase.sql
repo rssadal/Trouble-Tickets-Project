@@ -18,7 +18,7 @@ CREATE TABLE User2 (
 DROP TABLE IF EXISTS Ticket;
 CREATE TABLE Ticket (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
-    department   TEXT NOT NULL,
+    department      TEXT NOT NULL,
     hashtag         TEXT    NOT NULL,
     title           TEXT    NOT NULL,
     date2           TEXT,
@@ -76,7 +76,7 @@ DROP TABLE IF EXISTS Answers;
 CREATE TABLE Answers (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,
     answer     TEXT    NOT NULL
-   
+
 );
 
 -- Table: Ticket_Answer
