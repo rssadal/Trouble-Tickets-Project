@@ -24,9 +24,10 @@
             <div id="icon">
                     <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
             </div>
-        
         </header>
+        <div id="container" class="box">
 
+        
             <h1>
                 Ticket Solver
             </h1>
@@ -42,7 +43,6 @@
                 global $db;
 
                 $currentUsername = $_SESSION['username'];
-                echo $currentUsername;
              
                 if(isset($_GET['id'])) {
                     $id = $_GET['id'];
@@ -82,8 +82,9 @@
                     echo '<option value="In Progress">In Progress</option>';
                     echo '<option value="Resolved">Resolved</option>';
                     echo '</select>';
-                
-                    echo ' | Department:';
+                    echo '</h3>';
+                    echo '<h3 class="ticket-status-date">';
+                    echo ' Department:';
                 
                     // Dropdown for department
                     echo '<select id="department-dropdown" class="department-dropdown">';
@@ -96,14 +97,13 @@
                 
                 
                     //TICKET INFORMATION
-                    echo ' | Submitted ' . $date . '</h3>';
+                    echo '</h3>';
                     echo '<p class="ticket-description">' . $description . '</p>';
-                    echo '<p>Ticket submited by: ' . $username . '</p>';
-
+                    echo '<p>Submited by: ' . $username . ' in: ' . $date . '</p>';
 
                     // new hashtag
                     echo '<p> Ticket HashTag: ' . $hashtag . '</p>';
-                    echo '<button id="new_tag" class="new_tag" onclick="newtag(' . $id . ')">Edit HashTag</button>';
+                    echo '<button id="new_tag" class="new_tag basic" onclick="newtag(' . $id . ')">Edit HashTag</button>';
                 
                     echo '</div>';
                 } 
@@ -160,19 +160,35 @@
                 if ($rowItem['role2'] === 'Agent') {
                 
                     echo '<div class="ticket-container2 cdd">';
+                    echo '<div>';
                     echo '<span class="answer-id">This answer has been given the id ' . $rowItem['id'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="answer">Answer: ' . $rowItem['answer'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="username">Answered by: ' . $rowItem['username'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="role"> with role of ' . $rowItem['role2'] . '</span>';
+                    echo '</div>';
                     echo '</div>';
                 }
                 
                 else{
                     echo '<div class="ticket-container1 cdd">';
+                    echo '<div>';
                     echo '<span class="answer-id">This answer has been given the id ' . $rowItem['id'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="answer">Answer: ' . $rowItem['answer'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="username">Answered by: ' . $rowItem['username'] . '</span>';
+                    echo '</div>';
+                    echo '<div>';
                     echo '<span class="role"> with role of ' . $rowItem['role2'] . '</span>';
+                    echo '</div>';
                     echo '</div>';
                 }
             }
@@ -184,12 +200,13 @@
             echo "<h2> Answer to this Ticket(only Ticket owner or Company worker might post here) </h2>";
             // input box and button
             echo '<div class="message-box">';
-            echo '<textarea id="message-input" class="message-input" placeholder="Write your message here" style="width: 600px; height: 100px;"></textarea>';
-            echo '<button id="send-button" class="send-button" onclick="sendMessage(' . $id . ')">Send</button>';
+            echo '<div><textarea id="message-input" rows="4" cols="50" class="message-input" placeholder="Write your message here"></textarea></div>';
+            echo '<div><button id="send-button" class="send-button confirm" onclick="sendMessage(' . $id . ')">Send</button></div>';
             echo '</div>';
 
 
-        ?>           
+        ?>  
+        </div>         
         <script>
 
             function goBack() {
@@ -314,6 +331,13 @@
             }
 
         </script>
+
+        <footer>
+            <div class="footer">
+                University of Porto
+            </div>
+        </footer>
+
 
     </body>
 

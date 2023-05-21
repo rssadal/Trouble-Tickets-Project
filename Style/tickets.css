@@ -36,33 +36,39 @@ a {
 .ticket-container {
   border: 2px solid black;
   padding: 10px;
-  background-color: rgb(109, 113, 110);
   border-radius: 5px;
-  }
+  width: 90%;
+}
 
 .ticket-container1 {
-  border: 2px solid black;
   padding: 10px;
-  background-color: rgb(15, 181, 56);
+  background-color: #40E0D0;
   border-radius: 5px;
   width: 60%;
   float: left;
-
+  display: flex;
+  flex-direction: column;
+  text-align: start;
   }
 
 .ticket-container2 {
-    border: 2px;
+    display: flex;
+    flex-direction: column;
+    text-align: end;
     padding: 10px;
-    background-color: rgb(161, 9, 9);
+    background-color: #6C19FF;
     width: 60%;
     border-radius: 5px;
     float: right;
     margin-left: 38%;
+}
 
+.ticket-container2, .ticket-container1 {
+  margin-bottom: 1em;
 }
 
 .chat {
-  background-color: rgb(130, 161, 166);
+  width: 92%;
 }
   
   

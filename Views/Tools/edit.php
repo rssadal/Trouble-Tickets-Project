@@ -21,91 +21,89 @@
     <form style="display:contents" action="submit.php" method="post">
         <div id="forms" class="box">
             <?php
+
             if (isset($_GET['username'])) {
+
                 $id = $_GET['username'];
+
                 session_start();
                 include_once('../Login/connect.php');
+                $currentUsername = $_SESSION['username'];
+                //echo $currentUsername;
+                //echo $id;
 
                 global $db;
+                
+                $stmt = $db->prepare('SELECT User2.username, User2.role2, UserDepartment.department_id
+                FROM User2
+                LEFT JOIN UserDepartment ON User2.username = UserDepartment.user_username
+                WHERE User2.username = :username');
+                $stmt->bindParam(':username', $id);
+                $stmt->execute();
+                $row = $stmt->fetch();
 
-                $currentUsername = $_SESSION['username'];
+            
+                $username = $row['username'];
+                $role2 = $row['role2'];
+                $deparment = $row['department_id'];
+                //echo $role2;
+                //echo $username;
+                //echo $department_id;
+                
+                echo '<h1>Update Profile</h1>';
+                echo '<h2>' . $username . '</h2>';
+                echo '<h3> User Type </h3>';
+                echo '<div class="wrapper">';
+                echo '<div class="option">';
+                echo '<input class="input" type="radio" name="btn_client" value="1"' . ($role2 == "cliente" ? "checked=" : "") . '>';
+                echo '<div class="btn">';
+                echo '<span class="span">Client</span>';
+                echo '</div>';
+                echo '</div>';
 
-                // Prepare a SELECT statement to retrieve the columns you want to read
-                $stmt = $db->prepare('SELECT User2.nome, User2.username, User2.role2, UserDepartment.department_id FROM User2 
-                JOIN UserDepartment ON User2.username = UserDepartment.user_username
-                WHERE User2.username = :username;');
-                $stmt->bindParam(':username', $id);  // Use the correct variable name here
-                $result = $stmt->execute();
+                echo '<div class="option">';
+                echo '<input class="input" type="radio" name="btn_client" value="2"' . ($role2  == "agent" ? "checked" : "") . '>';
+                echo '<div class="btn">';
+                echo '<span class="span">Agent</span>';
+                echo '</div>';
+                echo '</div>';
+                echo '<div class="option">';
+                echo '<input class="input" type="radio" name="btn_client" value="3"' . ($role2  == "admin" ? "checked" : "") . '>';
+                echo '<div class="btn">';
+                echo '<span class="span">Admin</span>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
 
-                if (!$result) {
-                    echo "Error fetching from db";
-                    throw new Exception('Query execution failed');
-                }
+                
+                echo '<h3> Departament </h3>';
+                echo '<div class="wrapper">';
+                echo '<div class="option">';
+                echo '<input class="input" type="radio" name="btn_dp" value="1" ' . ($department_id == 1 ? "checked" : "") . '>';
+                echo '<div class="btn">';
+                echo '<span class="span">Marketing</span>';
+                echo '</div>';
+                echo '</div>';
+                echo '<div class="option">';
+                echo '<input class="input" type="radio" name="btn_dp" value="2" ' . ($department_id == 2 ? "checked" : "") . '>';
+                echo '<div class="btn">';
+                echo '<span class="span">Tech Help</span>';
+                echo '</div>';
+                echo '</div>';
+                echo '<div class="option">';
+                echo '<input class="input" type="radio" name="btn_dp" value="3"' . ($department_id == 3 ? "checked" : "") . '>';
+                echo '<div class="btn">';
+                echo '<span class="span">Information</span>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
 
-                $users = array();
-
-                // Loop through the results and read each row into the $users array
-                while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
-                    foreach ($row as $rowItem) {
-                        $nome = $rowItem['nome'];
-                        $username = $rowItem['username'];
-                        $type = $rowItem['role2'];
-                        $departament_id = $rowItem['department_id'];
-
-                        $users[] = array($nome, $username,$departament_id,$type);
-                    }
-                }
-
-                $db = null;
-
-                // Display the user information
-                foreach ($users as $user) {
-                    echo '<h1>Update Profile</h1>';
-                    echo '<h2>' . $user[0] . '</h2>';
-                    echo '<h3> User Type </h3>';
-                    echo '<div class="wrapper">';
-                    echo '<div class="option">';
-                    echo '<input class="input" type="radio" name="btn" value="1"' . ($user[3] == "cliente" ? "checked=" : "") . '>';
-                    echo '<div class="btn">';
-                    echo '<span class="span">Client</span>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '<div class="option">';
-                    echo '<input class="input" type="radio" name="btn" value="2"' . ($user[3] == "agent" ? "checked" : "") . '>';
-                    echo '<div class="btn">';
-                    echo '<span class="span">Agent</span>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '<div class="option">';
-                    echo '<input class="input" type="radio" name="btn" value="3"' . ($user[3] == "admin" ? "checked" : "") . '>';
-                    echo '<div class="btn">';
-                    echo '<span class="span">Admin</span>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-                        echo '<h3> Departament </h3>';
-                        echo '<div class="wrapper">';
-                        echo '<div class="option">';
-                        echo '<input class="input" type="radio" name="btn" value="1" ' . ($user[2] == 1 ? "checked" : "") . '>';
-                        echo '<div class="btn">';
-                        echo '<span class="span">Marketing</span>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '<div class="option">';
-                        echo '<input class="input" type="radio" name="btn" value="2" ' . ($user[2] == 2 ? "checked" : "") . '>';
-                        echo '<div class="btn">';
-                        echo '<span class="span">Tech Help</span>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '<div class="option">';
-                        echo '<input class="input" type="radio" name="btn" value="3"' . ($user[2] == 3 ? "checked" : "") . '>';
-                        echo '<div class="btn">';
-                        echo '<span class="span">Information</span>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</div>';
-                }
-            } else {
+                echo '<button id="send-button" type="button" class="basic" onclick="send2()">Send</button>';
+                
+                        
+            }
+         
+            else {
                 echo "No ID provided.";
             }
             ?>
@@ -119,6 +117,12 @@
     </footer>
 
     <script>
+
+        function send2(){
+            console.log("CLIQUEI NO BOTAO");
+        }
+
+
         
     </script>
 </body>

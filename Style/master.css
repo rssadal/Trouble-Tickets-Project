@@ -25,8 +25,7 @@ body{
     border-radius: 1em;
     background-color: white;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.4);
-    width: 50%;
-    
+    width: 60%;
 }
 
 .box > * {
@@ -199,6 +198,24 @@ header {
     flex-direction: row;
     box-shadow: 4px 4px var(--main-color);
   }
+
+  .wrapper1 {
+    --font-color-dark: #323232;
+    --font-color-light: #FFF;
+    --bg-color: #fff;
+    --main-color: #323232;
+    position: relative;
+    width: 250px;
+    height: 36px;
+    background-color: var(--bg-color);
+    border: 2px solid var(--main-color);
+    border-radius: 34px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 4px 4px var(--main-color);
+  }
+
+  
   
   .option {
     width: 80.5px;
