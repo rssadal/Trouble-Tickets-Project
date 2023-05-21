@@ -53,6 +53,7 @@ CREATE TABLE UserDepartment (
     FOREIGN KEY (user_username) REFERENCES User2(username)
 );
 
+-- Table: Faq
 DROP TABLE IF EXISTS Faq;
 CREATE TABLE Faq (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -110,14 +111,9 @@ INSERT INTO User2 VALUES ('user', 'eu', '123', 'francisco.amaizade@hotmail.com',
 INSERT INTO User2 VALUES ('novo', 'eusounovo', '123', 'novo@hotmail.com', 'cliente');
 INSERT INTO User2 VALUES ('maria69', 'maria69', '69', 'maria@hotmail.com', 'Services');
 
--- INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
--- INSERT INTO User2 (username, nome, password2, email, role2) VALUES ('Pedroxx', 'diogo camara', 'Adivinha', 'pedroxx@gmail.com', 'cliente');
-
 INSERT INTO Department (nome) VALUES ("marketing");
 INSERT INTO Department (nome) VALUES ("tech help");
 INSERT INTO Department (nome) VALUES ("information");
-
--- INSERT INTO UserDepartment (user_username, department_id) VALUES ("diogo13350", "marketing");
 
 INSERT INTO Ticket (department, hashtag, date2, title, status2, user_username, description2) VALUES ('Marketing', '#', '04-05-2023', 'client waiting for meeting with business team', 'waiting','diogo13350', "");
 INSERT INTO Ticket (department, hashtag, date2, title, status2, user_username, description2) VALUES ('Tech Help', '#', '05-05-2023', 'client waiting for tech help', 'waiting','diogo13350', "");
