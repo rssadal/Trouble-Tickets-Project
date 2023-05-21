@@ -93,14 +93,13 @@ header {
     background-color: #3DD9EB;
 }
 
+
 .footer {
   color: rgb(0, 0, 0);
   font-family: var(--font_logo);
-  padding: 0px;
+  padding-top: 2em;
+  padding-bottom: 1em;
   text-align: center;
-  position: fixed;
-  bottom: 20px; /* Adjust the spacing value as per your preference */
-  left: 0;
   width: 100%;
 }
 
@@ -240,3 +239,27 @@ header {
   .input:checked + .btn .span {
     color: var(--font-color-light);
   }
+
+  .cardUser {
+    width: 25%;
+    cursor: pointer;
+    height: 50px;
+    background: #3DD9EB;
+    color: white;
+    display:flex;
+    margin-top: 5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    border-radius: 1em;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+   
+   .shadowUser {
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                0 0  0 2px rgb(190, 190, 190),
+                0.3em 0.3em 1em rgba(0,0,0,0.3);
+   }
+   

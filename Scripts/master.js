@@ -10,6 +10,10 @@ function openNewPage(url) {
     window.open(url, '_blank');
 }
 
+function openProfile(url) {
+    window.open(url, '_self');
+}
+
 function goToProfile() {
     window.location.href = "../../Views/Login/User.html";
 }
