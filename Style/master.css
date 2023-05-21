@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash:400,700');
+
 
 :root {
   --cor_primaria: #ecececfa;
-  --font_logo: "Abrashe", sans-serif;
+  --font_logo: "Berkshire Swash", sans-serif;
   --font_padrão: "Oswald", sans-serif;
 }
 *{
