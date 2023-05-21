@@ -11,13 +11,16 @@ $currentUsername = $_SESSION['username'];
 $response = 'USER LOGGED IN WITH USERNAME: ' . $currentUsername . ' . ' ;
 echo $response;
 
-$db = new SQLite3('tickets.db');
+session_start();
+include_once('../Login/connect.php');
+
+global $db;
 
 // Prepare and execute the SQL query to update the ticket department
 $sql = "UPDATE Ticket SET hashtag = :newhashtag WHERE id = :ticketId";
 $stmt = $db->prepare($sql);
-$stmt->bindValue(':newhashtag', $userInput, SQLITE3_TEXT);
-$stmt->bindValue(':ticketId', $ticketId, SQLITE3_INTEGER);
+$stmt->bindValue(':newhashtag', $userInput);
+$stmt->bindValue(':ticketId', $ticketId);
 $result = $stmt->execute();
 
 // Check if the update was successful

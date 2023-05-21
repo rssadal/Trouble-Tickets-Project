@@ -24,7 +24,6 @@
             <div onclick="mainPrincipal()" id="logo"><h2>Solve Us</h2></div>
             <div id="icon" onclick="goToProfile()">
                 <img src="../../Images/pngwing.com.png" alt="Image" class="square-image">
-            <div onclick="mainPrincipal()" id="logo"><h2>Solve Us</h2></div>
             </div>
         </header>
         <div id="container" class="box">
@@ -155,7 +154,7 @@
             echo "Error fetching from db";
             throw new Exception('Query execution failed');
         }
-        echo '<div class="chat">';        echo '<div class="chat">';
+        echo '<div class="chat">'; 
         // Loop through the results and output the response answers with usernames and roles
         while ($row = $query->fetchALL(PDO::FETCH_ASSOC)) {
             foreach ($row as $rowItem){
