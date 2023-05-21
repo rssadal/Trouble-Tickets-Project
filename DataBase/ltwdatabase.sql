@@ -104,12 +104,12 @@ PRAGMA foreign_keys = ON;
 BEGIN TRANSACTION;
 
 -- Insert data into User2 table
-INSERT INTO User2 VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'cliente');
-INSERT INTO User2 VALUES ('Pedroxx', 'pedro albranaz', '12345', 'pedroxx@gmail.com', 'cliente');
-INSERT INTO User2 VALUES ('franca123', 'francisco franco', 'ilove123', 'francisco.amaizade@hotmail.com', 'cliente');
-INSERT INTO User2 VALUES ('user', 'eu', '123', 'francisco.amaizade@hotmail.com', 'cliente');
-INSERT INTO User2 VALUES ('novo', 'eusounovo', '123', 'novo@hotmail.com', 'cliente');
-INSERT INTO User2 VALUES ('maria69', 'maria69', '69', 'maria@hotmail.com', 'Services');
+INSERT INTO User2 VALUES ('diogo13350', 'diogo camara', 'Adivinha', 'diogo13350@hotmail.com', 'client');
+INSERT INTO User2 VALUES ('Pedroxx', 'pedro albranaz', '12345', 'pedroxx@gmail.com', 'client');
+INSERT INTO User2 VALUES ('franca123', 'francisco franco', 'ilove123', 'francisco.amaizade@hotmail.com', 'client');
+INSERT INTO User2 VALUES ('user', 'eu', '123', 'francisco.amaizade@hotmail.com', 'client');
+INSERT INTO User2 VALUES ('novo', 'eusounovo', '123', 'novo@hotmail.com', 'client');
+INSERT INTO User2 VALUES ('maria69', 'maria69', '69', 'maria@hotmail.com', 'agent');
 
 INSERT INTO Department (nome) VALUES ("marketing");
 INSERT INTO Department (nome) VALUES ("tech help");

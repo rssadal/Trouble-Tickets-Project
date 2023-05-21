@@ -55,20 +55,20 @@
                 echo '<h3> User Type </h3>';
                 echo '<div class="wrapper">';
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn_client" value="1"' . ($role2 == "cliente" ? "checked=" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_client" value="1"' . ($role2 == "client" ? "checked=" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Client</span>';
                 echo '</div>';
                 echo '</div>';
 
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn_client" value="2"' . ($role2  == "Agent" ? "checked" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_client" value="2"' . ($role2  == "agent" ? "checked" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Agent</span>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn_client" value="3"' . ($role2  == "Admin" ? "checked" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_client" value="3"' . ($role2  == "admin" ? "checked" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Admin</span>';
                 echo '</div>';
