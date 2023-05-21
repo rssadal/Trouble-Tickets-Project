@@ -62,13 +62,13 @@
                 echo '</div>';
 
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn_client" value="2"' . ($role2  == "agent" ? "checked" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_client" value="2"' . ($role2  == "Agent" ? "checked" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Agent</span>';
                 echo '</div>';
                 echo '</div>';
                 echo '<div class="option">';
-                echo '<input class="input" type="radio" name="btn_client" value="3"' . ($role2  == "admin" ? "checked" : "") . '>';
+                echo '<input class="input" type="radio" name="btn_client" value="3"' . ($role2  == "Admin" ? "checked" : "") . '>';
                 echo '<div class="btn">';
                 echo '<span class="span">Admin</span>';
                 echo '</div>';
@@ -98,7 +98,8 @@
                 echo '</div>';
                 echo '</div>';
 
-                echo '<button id="send-button" type="button" class="basic" onclick="send2()">Send</button>';
+                echo '<button id="send-button" type="button" class="basic" onclick="send2(\'' . $id . '\', \'' . $role2 . '\')">Send</button>';
+
                 
                         
             }
@@ -118,8 +119,46 @@
 
     <script>
 
-        function send2(){
-            console.log("CLIQUEI NO BOTAO");
+        function getValue() {
+      
+            var radioButtons = document.getElementsByName("btn_client");
+
+            for (var i = 0; i < radioButtons.length; i++) {
+        
+                if (radioButtons[i].checked) {
+        
+                var selectedValue = radioButtons[i].nextElementSibling.querySelector('.span').textContent;
+
+                return selectedValue;
+                }
+            }
+        }
+
+        function send2(userId, role2){
+            //console.log("CLIQUEI NO BOTAO");
+            //console.log("User ID: " + userId);
+            var selectedOption = getValue();
+            //console.log(selectedOption);
+
+            console.log("Entered the function to update the User role");
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "submit.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+
+            
+            var data = "selectedOption=" + encodeURIComponent(selectedOption)+ "&userId=" + encodeURIComponent(userId);
+            xhr.send(data);
+               
+        
+                
         }
 
 

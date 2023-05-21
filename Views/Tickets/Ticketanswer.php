@@ -193,9 +193,9 @@
                 }
             }
         }
-        echo '</div>';
-        // Close the database connection
-        $db = null;
+            echo '</div>';
+            // Close the database connection
+            $db = null;
 
             echo "<h2> Answer to this Ticket(only Ticket owner or Company worker might post here) </h2>";
             // input box and button

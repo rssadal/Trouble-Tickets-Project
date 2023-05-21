@@ -20,4 +20,5 @@
     else {
         echo "Failed to update ticket department.";
     }
+    
 ?>
