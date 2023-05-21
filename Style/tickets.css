@@ -1,12 +1,15 @@
-<<<<<<< HEAD
 #list{
-    display: flex;
-    flex-direction: column;
-    width: 70%;    
+    display: flex;  
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #list > * {
-    margin-bottom: 1%;
+    margin: 1%;
+}
+
+a {
+    text-decoration: none;
 }
 
 #filtro{

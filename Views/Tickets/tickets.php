@@ -41,17 +41,19 @@
 
     //Escolhemos qual a informacao queremos no ecrã
     foreach ($tickets as $ticket) {
-        if ($ticket[6] === $currentUsername) {
-            ?>
-            <div class="ticket">
-                <a href="Ticketanswer.php?id=<?php echo $ticket[0]; ?>"  class="ticket" target="_blank">
-                    <div>
-                        <?php echo "&nbsp;&nbsp;&nbsp;".$ticket[0] . "&nbsp;&nbsp;&nbsp;" . $ticket[4] . "&nbsp;&nbsp;&nbsp;" .$ticket[3]; ?>
+        ?>
+                    <div onclick="openNewPage('Ticketanswer.php?id=<?php echo $ticket[0]; ?>')" class="cardBox">
+                        <div class="card">
+                            <div class="h4"><?php echo $ticket[4]; ?></div>
+                                <div class="content">
+                                    <div class="h3"><?php echo $ticket[5]; ?></div>
+                                    <p><?php echo $ticket[2]; ?></p>
+                                    <p><?php echo $ticket[3]; ?></p>
+                                    
+                                </div>
+                        </div>
                     </div>
-                </a>
-            </div>
-            <?php
-        }
+        <?php
     }
     ?>
 </div>

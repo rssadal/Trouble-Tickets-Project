@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="../../Style/master.css">
         <link rel="stylesheet" href="../../Style/tickets.css">
+        <script src="../../Scripts/master.js"></script>
         <link type="image/png" sizes="32x32" rel="icon" href="../../Images/icon.png">
         <title>FAQ</title>
     </head>
@@ -19,7 +20,7 @@
                 </div>
         </header>
 
-        <div class="box">
+        <div id="container" class="box">
             <h1>
                 FAQ
             </h1>
@@ -28,31 +29,37 @@
                 <button class="confirm" type="submit">Search</button>
             </div>
         
-            <div class="ticket">
-                <div>FAQ ID</div>
-                <div>Title</div>
-                <div>Description</div>
+            <iframe id="frame" src="faq.php"></iframe>
+
+        </div>
+
+        <footer>
+            <div class="footer">
+                University of Porto
             </div>
-            
-            <iframe src="faq.php"></iframe>
-
-        </div>
-
-        <div class="footer">
-            University of Porto
-        </div>
-
-        <script>
-                function goBacktoMainPage() {
-                    window.location.href = "../../Views/Main/Index.html";
-                }
-
-                function goToProfile() {
-                    window.location.href = "../../Views/Login/User.html";
-                }
-        </script>
-        
+        </footer>
 
     </body>
+
+    <script>
+        function goBacktoMainPage() {
+            window.location.href = "../../Views/Main/Index.html";
+        }
+
+        function goToProfile() {
+            window.location.href = "../../Views/Login/User.html";
+        }
+
+        document.getElementById("frame").onload = function() {
+            // Access the contentWindow of the iframe
+            var iframeWindow = document.getElementById("frame").contentWindow;
+        
+            // Get the desired div element from the iframe
+            var desiredDiv = iframeWindow.document.getElementById("list");
+        
+            // Append the desired div to your webpage
+            document.getElementById("container").appendChild(desiredDiv);
+        };
+</script>
 
 </html

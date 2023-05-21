@@ -14,7 +14,7 @@ if (isset($_POST['ticketText']) && isset($_POST['department'])) {
     $ticketText = $_POST['ticketText'];
     $department = $_POST['department'];
     $dateString = $_POST['dateString'];
-    $date = date('d-m-Y'); // Get the current date
+    $date = str_replace('-', '/', date('d-m-Y')); // Get the current date
 
     $db = new SQLite3('tickets.db');
 

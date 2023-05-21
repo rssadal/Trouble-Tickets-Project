@@ -31,7 +31,7 @@
             </div>
     
             <div>
-                <input type="text" id="usernameInput"></input>
+                <textarea rows="4" cols="50" type="text" id="usernameInput"></textarea>
             </div>
     
             <div>
@@ -39,44 +39,45 @@
             </div>  
         </div>
 
-        <div class="footer">
-            University of Porto
-        </div>
+        <footer>
+            <div class="footer">
+                University of Porto
+            </div>
+        </footer>
 
-                    
-
-        <script>
-            function Send() {
-                var ticket_text = document.getElementById("usernameInput").value;
-                var department = document.getElementById("department").value;
-            
-                var formData = new FormData();
-                formData.append('ticketText', ticket_text);
-                formData.append('department', department); // Add the department value to formData
-            
-                fetch('your_php_script.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text()) // Extract the response text
-                .then(data => {
-                    // Handle the response text from the PHP script
-                    console.log('Response:', data);
-                    // You can perform further actions based on the response text
-                })
-                .catch(error => {
-                    // Handle any errors that occurred during the request
-                    console.error('Error:', error);
-                });
-            }
-
-            function goBacktoMainPage() {
-                window.location.href = "../../Views/Main/Index.html";
-            }
-
-            function goToProfile() {
-                    window.location.href = "../../Views/Login/User.html";
-            }
-        </script>
     </body>
+
+    <script>
+        function Send() {
+            var ticket_text = document.getElementById("usernameInput").value;
+            var department = document.getElementById("department").value;
+        
+            var formData = new FormData();
+            formData.append('ticketText', ticket_text);
+            formData.append('department', department); // Add the department value to formData
+        
+            fetch('your_php_script.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text()) // Extract the response text
+            .then(data => {
+                // Handle the response text from the PHP script
+                console.log('Response:', data);
+                // You can perform further actions based on the response text
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error('Error:', error);
+            });
+        }
+
+        function goBacktoMainPage() {
+            window.location.href = "../../Views/Main/Index.html";
+        }
+
+        function goToProfile() {
+                window.location.href = "../../Views/Login/User.html";
+        }
+    </script>
 </html>
